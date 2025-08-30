@@ -1,0 +1,10 @@
+{
+    "logo": "./img/logo_gamex_full.png",
+    "icon": "/img/favicon.png",
+    "name": "UR Game ToURnament",
+    "form_email": "/email/",
+    "color": "gray",
+    "IOD_email": "...",
+    "IOD_phone": "...",
+    "IOD_name": "..."
+}
