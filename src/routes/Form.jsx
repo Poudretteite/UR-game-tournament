@@ -61,7 +61,8 @@ function Form() {
       body: JSON.stringify(data)
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Błąd serwera!");
+        const text = res.text();
+        if (!res.ok) throw new Error(text || "Błąd serwera!");
         navigate("/thankyou");
       })
       .catch((err) => {
