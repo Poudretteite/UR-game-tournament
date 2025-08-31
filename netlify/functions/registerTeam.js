@@ -33,7 +33,7 @@ export async function handler(event) {
     }
 
     for (let i = 0; i < realMembers.length; i++) {
-        const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
+        const { firstName, lastName, steam, birthDate, shirtSize } = realMembers[i];
 
         const isOptional = i === 5;
         const isEmpty = !firstName && !lastName && !steam && !birthDate && !shirtSize;
