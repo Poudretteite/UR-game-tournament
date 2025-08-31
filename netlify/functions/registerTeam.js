@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import { validateForm } from "./validateForm.js";
+import e from "cors";
 
 const pool = new Pool({
     connectionString: process.env.NETLIFY_DATABASE_URL,
@@ -76,7 +77,7 @@ export async function handler(event) {
     } catch (err) {
         await client.query("ROLLBACK");
         console.error("Błąd serwera:", err);
-        return { statusCode: 500, body: "Błąd serwera" };
+        return { statusCode: 500, body: err.toString() };
     } finally {
         client.release();
     }
