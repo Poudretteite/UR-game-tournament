@@ -53,7 +53,7 @@ function Form() {
       return;
     }
 
-    fetch("/.netlify/functions/registerTeam", {
+    fetch("/.netlify/functions/test2", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
