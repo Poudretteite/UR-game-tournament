@@ -24,7 +24,7 @@ export async function handler(event) {
         return { statusCode: 400, body: "Wypełnij wszystkie pola drużyny!" };
     }
 
-    if (!Array.isArray(members) || (members.length < 0 && members.length >= 6)) {
+    if (!Array.isArray(members) || (members.length < 5 && members.length > 6)) {
         return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
     }
 
