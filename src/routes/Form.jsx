@@ -13,6 +13,7 @@ function Form() {
   const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
+    console.log("Received event:", event.body);
     e.preventDefault();
     setError('');
     const formData = new FormData(e.target);

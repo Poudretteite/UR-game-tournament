@@ -1,6 +1,5 @@
 import { Pool } from "pg";
 import { validateForm } from "./validateForm.js";
-import e from "cors";
 
 const pool = new Pool({
     connectionString: process.env.NETLIFY_DATABASE_URL,
@@ -53,7 +52,9 @@ export async function handler(event) {
 
     const client = await pool.connect();
     try {
+        console.log("Connecting to DB...");
         await client.query("BEGIN");
+        console.log("DB connected");
 
         const result = await client.query(
             `INSERT INTO Teams (TeamName, CaptainName, CaptainTel, CaptainEmail) 
@@ -77,7 +78,7 @@ export async function handler(event) {
     } catch (err) {
         await client.query("ROLLBACK");
         console.error("Błąd serwera:", err);
-        return { statusCode: 500, body: err.toString() };
+        return { statusCode: 500, body: "Błąd serwera" + err.message};
     } finally {
         client.release();
     }
