@@ -24,16 +24,16 @@ export async function handler(event) {
         return { statusCode: 400, body: "Wypełnij wszystkie pola drużyny!" };
     }
 
+    const realMembers = members.filter(m => 
+        m.firstName || m.lastName || m.steam || m.birthDate || m.shirtSize
+    );
+
     if (!Array.isArray(members) || members.length < 5 || members.length > 6) {
         return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
     }
 
     for (let i = 0; i < members.length; i++) {
         const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
-      
-        if (i === 5 && !firstName && !lastName && !steam && !birthDate && !shirtSize) {
-          continue;
-        }
       
         if (!firstName || !lastName || !steam || !shirtSize) {
           return {
