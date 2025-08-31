@@ -23,44 +23,30 @@ export async function handler(event) {
     if (!team || !team.teamName || !team.captainName || !team.captainTel || !team.captainEmail) {
         return { statusCode: 400, body: "Wypełnij wszystkie pola drużyny!" };
     }
-
-    const realMembers = members.filter(m => 
-        m.firstName || m.lastName || m.steam || m.birthDate || m.shirtSize
-    );
-
-    if (!Array.isArray(realMembers) || realMembers.length < 5 || realMembers.length > 6) {
+    if (!Array.isArray(members) || members.length < 5 || members.length > 6) {
         return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
     }
 
-    for (let i = 0; i < realMembers.length; i++) {
-        const { firstName, lastName, steam, birthDate, shirtSize } = realMembers[i];
-
+    for (let i = 0; i < members.length; i++) {
+        const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
         const isOptional = i === 5;
         const isEmpty = !firstName && !lastName && !steam && !birthDate && !shirtSize;
 
         if (isOptional && isEmpty) continue;
-        
+
         if (!firstName || !lastName || !steam || !shirtSize) {
             return {
-            statusCode: 400,
-            body: `Wypełnij wszystkie pola zawodnika nr ${i + 1}!`
+                statusCode: 400,
+                body: `Wypełnij wszystkie pola zawodnika nr ${i + 1}!`
             };
         }
-        
+
         if (birthDate && isNaN(Date.parse(birthDate))) {
             return {
-            statusCode: 400,
-            body: `Niepoprawny format daty urodzenia zawodnika nr ${i + 1}.`
+                statusCode: 400,
+                body: `Niepoprawny format daty urodzenia zawodnika nr ${i + 1}.`
             };
         }
-    }
-
-    const validationError = validateForm(data);
-    if (validationError) {
-        return { 
-            statusCode: 400, 
-            body: JSON.stringify({ success: false, message: validationError }) 
-        };
     }
 
     const client = await pool.connect();
@@ -74,6 +60,9 @@ export async function handler(event) {
         );
         const teamId = result.rows[0].id;
 
+        const realMembers = members.filter(m =>
+            m.firstName || m.lastName || m.steam || m.birthDate || m.shirtSize
+        );
         for (const member of realMembers) {
             const { firstName, lastName, steam, birthDate, shirtSize } = member;
             await client.query(
