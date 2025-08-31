@@ -1,6 +1,7 @@
-import Filter from 'bad-words';
-const filter = new Filter();
+import pkg from 'bad-words';
 
+const Filter = pkg;
+const filter = new Filter();
 const date2007 = "2007-08-06";
 const shirtSizes = ["S", "M", "L", "XL"];
 
