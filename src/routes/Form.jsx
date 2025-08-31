@@ -57,8 +57,8 @@ function Form() {
       method: "POST",
       headers: { 
         "Content-Type": "application/json"
-      }
-      body: JSON.stringify(data),
+      },
+      body: JSON.stringify(data)
     })
       .then((res) => {
         if (!res.ok) throw new Error("Błąd serwera");
