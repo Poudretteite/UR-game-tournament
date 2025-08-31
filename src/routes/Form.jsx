@@ -56,8 +56,8 @@ function Form() {
     fetch("/.netlify/functions/registerTeam", {
       method: "POST",
       headers: { 
-        "Content-Type": "application/json",
-        "x-api-key": import.meta.env.VITE_FRONTEND_KEY},
+        "Content-Type": "application/json"
+      }
       body: JSON.stringify(data),
     })
       .then((res) => {

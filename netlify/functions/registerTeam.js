@@ -10,12 +10,7 @@ export async function handler(event) {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Niedozwolona metoda." };
     }
-
-    const apiKey = event.headers['x-api-key'];
-        if (apiKey !== process.env.VITE_FRONTEND_KEY) {
-            return { statusCode: 401, body: JSON.stringify({ success: false, message: "Brak autoryzacji." }) };
-        }
-
+    
     let data;
     try {
         data = JSON.parse(event.body);
