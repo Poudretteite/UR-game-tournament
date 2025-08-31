@@ -28,12 +28,12 @@ export async function handler(event) {
         m.firstName || m.lastName || m.steam || m.birthDate || m.shirtSize
     );
 
-    if (!Array.isArray(members) || members.length < 5 || members.length > 6) {
+    if (!Array.isArray(realMembers) || realMembers.length < 5 || realMembers.length > 6) {
         return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
     }
 
-    for (let i = 0; i < members.length; i++) {
-        const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
+    for (let i = 0; i < realMembers.length; i++) {
+        const { firstName, lastName, steam, birthDate, shirtSize } = realMembers[i];
       
         if (!firstName || !lastName || !steam || !shirtSize) {
           return {
@@ -48,7 +48,7 @@ export async function handler(event) {
             body: `Niepoprawny format daty urodzenia zawodnika nr ${i + 1}.`
           };
         }
-      }
+    }
 
     const validationError = validateForm(data);
     if (validationError) {
@@ -69,7 +69,7 @@ export async function handler(event) {
         );
         const teamId = result.rows[0].id;
 
-        for (const member of members) {
+        for (const member of realMembers) {
             const { firstName, lastName, steam, birthDate, shirtSize } = member;
             await client.query(
                 `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, Team_id) 
