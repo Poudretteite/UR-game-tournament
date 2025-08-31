@@ -53,11 +53,11 @@ function Form() {
       return;
     }
 
-    fetch("/.netlify/functions/test2", {
+    fetch("/.netlify/functions/registerTeam", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        "x-api-key": process.env.VITE_FRONTEND_KEY},
+        "x-api-key": import.meta.env.VITE_FRONTEND_KEY},
       body: JSON.stringify(data),
     })
       .then((res) => {
