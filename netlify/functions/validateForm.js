@@ -14,7 +14,7 @@ export function validateForm(data) {
   }
 
   // Telefon
-  if (!/^\d{9}$/.test(data.team.captainPhone)) {
+  if (!/^\d{9}$/.test(data.team.captainTel)) {
     return 'Numer telefonu musi mieć dokładnie 9 cyfr.';
   }
 

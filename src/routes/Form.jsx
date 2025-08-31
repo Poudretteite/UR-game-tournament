@@ -39,7 +39,7 @@ function Form() {
     const data = {
       team: {
         captainName: rawData.name.trim(),
-        captainPhone: rawData.telephone,
+        captainTel: rawData.telephone,
         captainEmail: rawData.email.trim(),
         teamName: rawData.teamName.trim()
       },
