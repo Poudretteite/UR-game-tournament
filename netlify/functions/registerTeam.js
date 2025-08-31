@@ -28,7 +28,7 @@ export async function handler(event) {
         const {firstName, lastName, steam, birthDate, shirtSize} = member;
 
         if (!firstName || !lastName || !steam || !shirtSize) {
-            return { statusCode: 400, body: "Wypełnij wszystkie pola." };
+            return { statusCode: 400, body: "Wypełnij wszystkie pola!" };
         }
 
         if (birthDate && isNaN(Date.parse(birthDate))) {
