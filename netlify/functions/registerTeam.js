@@ -33,20 +33,25 @@ export async function handler(event) {
     }
 
     for (let i = 0; i < realMembers.length; i++) {
-        const { firstName, lastName, steam, birthDate, shirtSize } = realMembers[i];
-      
+        const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
+
+        const isOptional = i === 5;
+        const isEmpty = !firstName && !lastName && !steam && !birthDate && !shirtSize;
+
+        if (isOptional && isEmpty) continue;
+        
         if (!firstName || !lastName || !steam || !shirtSize) {
-          return {
+            return {
             statusCode: 400,
             body: `Wypełnij wszystkie pola zawodnika nr ${i + 1}!`
-          };
+            };
         }
-      
+        
         if (birthDate && isNaN(Date.parse(birthDate))) {
-          return {
+            return {
             statusCode: 400,
             body: `Niepoprawny format daty urodzenia zawodnika nr ${i + 1}.`
-          };
+            };
         }
     }
 
