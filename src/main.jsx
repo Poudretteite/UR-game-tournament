@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useLayoutEffect } from 'react';
 import './index.css'
 import App from './App.jsx'
@@ -25,7 +25,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="rejestracja" element={<Form />} />
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="gdpr" element={<Gdpr />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route> 
       </Routes>
     </Wrapper>
