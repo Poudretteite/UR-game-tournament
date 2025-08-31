@@ -30,7 +30,7 @@ export async function handler(event) {
     for (let i = 0; i < members.length; i++) {
         const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
         const isOptional = i === 5;
-        const isEmpty = !firstName && !lastName && !steam && !birthDate && !shirtSize;
+        const isEmpty = !firstName && !lastName && !steam;
 
         if (isOptional && isEmpty) continue;
 
@@ -61,7 +61,7 @@ export async function handler(event) {
         const teamId = result.rows[0].id;
 
         const realMembers = members.filter(m =>
-            m.firstName || m.lastName || m.steam || m.birthDate || m.shirtSize
+            m.firstName || m.lastName || m.steam
         );
         for (const member of realMembers) {
             const { firstName, lastName, steam, birthDate, shirtSize } = member;
