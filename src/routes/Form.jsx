@@ -12,8 +12,7 @@ function Form() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    console.log("Received event:", event.body);
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     const formData = new FormData(e.target);
@@ -52,23 +51,24 @@ function Form() {
       setError(validationError);
       return;
     }
-
-    fetch("/.netlify/functions/registerTeam", {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then((res) => {
-        const text = res.text();
-        if (!res.ok) throw new Error(text || "Błąd serwera!");
-        navigate("/thankyou");
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(err.toString());
+    try {
+      const res = await fetch("/.netlify/functions/registerTeam", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
       });
+  
+      const text = await res.text(); // now this is the actual string
+  
+      if (!res.ok) {
+        throw new Error(text || "Błąd serwera!");
+      }
+  
+      navigate("/thankyou");
+    } catch (err) {
+      console.error(err);
+      setError(err.toString());
+    }
   };
 
   const commonStyle =
