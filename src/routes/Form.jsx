@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {Filter} from 'bad-words';
 import assets from '../data/assets.json';
 import Button from '../components/Button';
 import links from '../data/links.json';
-import validateForm from '../../netlify/functions/validateForm';
+import { validateForm } from "../../netlify/functions/validateForm.js";
 
 const shirtSizes = ["S", "M", "L", "XL"];
 const date2007 = "2007-08-06";
@@ -12,7 +11,6 @@ const date2007 = "2007-08-06";
 function Form() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
-  const filter = new Filter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,16 +24,16 @@ function Form() {
       const firstName = rawData[`${prefix}Name`]?.trim() || '';
       const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
       const steam     = rawData[`${prefix}Steam`] || '';
-      const birthdate = rawData[`${prefix}BirthDate`] || '';
+      const birthDate = rawData[`${prefix}birthDate`] || '';
       const shirtSize = rawData[`${prefix}shirtSize`] || '';
 
       const isOptional = i === 6;
-      const isEmpty = !firstName && !lastName && !steam && !birthdate && !shirtSize;
+      const isEmpty = !firstName && !lastName && !steam && !birthDate && !shirtSize;
       if (isOptional && isEmpty) {
         continue;
       }
 
-      members.push({ firstName, lastName, steam, birthdate, shirtSize });
+      members.push({ firstName, lastName, steam, birthDate, shirtSize });
     }
 
     const data = {
@@ -194,7 +192,7 @@ function Form() {
                     <input
                       type="date"
                       max={date2007}
-                      name={`${tmNo}BirthDate`}
+                      name={`${tmNo}birthDate`}
                       required={required}
                       className={`${commonStyle} py-1`}
                     />

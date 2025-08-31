@@ -33,4 +33,3 @@ const pool = new Pool({
     return { statusCode: 500, body: "Server error" };
   }
 }
-import validateForm from "./validateForm.js";

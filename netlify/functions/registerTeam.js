@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import validateForm from "./validateForm.js";
+import { validateForm } from "./validateForm.js";
 
 const pool = new Pool({
     connectionString: process.env.NETLIFY_DATABASE_URL,
@@ -30,13 +30,13 @@ export async function handler(event) {
     }
 
     for (const member of members) {
-        const {name, surname, steam, birthdate, shirtSize} = member;
+        const {name, surname, steam, birthDate, shirtSize} = member;
 
         if (!name || !surname || !steam || !shirtSize) {
             return { statusCode: 400, body: "Wypełnij wszystkie pola." };
         }
 
-        if (birthdate && isNaN(Date.parse(birthdate))) {
+        if (birthDate && isNaN(Date.parse(birthDate))) {
             return { statusCode: 400, body: "Niepoprawny format daty urodzenia." };
         }
     }
@@ -62,11 +62,11 @@ export async function handler(event) {
         const teamId = result.rows[0].id;
 
         for (const member of members) {
-            const {name, surname, steam, birthdate, shirtSize} = member;
+            const {name, surname, steam, birthDate, shirtSize} = member;
             await client.query(
-                `INSERT INTO Players (Name, Surname, Steam, BirthDate, ShirtSize, TeamId) 
+                `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, TeamId) 
                  VALUES ($1, $2, $3, $4, $5, $6)`,
-                [member.name, member.surname, member.steam, member.birthdate, member.shirtSize, teamId]
+                [member.name, member.surname, member.steam, member.birthDate, member.shirtSize, teamId]
             );
         }
 
