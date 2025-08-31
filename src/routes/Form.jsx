@@ -4,6 +4,7 @@ import {Filter} from 'bad-words';
 import assets from '../data/assets.json';
 import Button from '../components/Button';
 import links from '../data/links.json';
+import validateForm from '../../netlify/functions/validateForm';
 
 const shirtSizes = ["S", "M", "L", "XL"];
 const date2007 = "2007-08-06";
@@ -13,103 +14,51 @@ function Form() {
   const [error, setError] = useState('');
   const filter = new Filter();
 
-  const validateForm = (data) => {
-    // Kapitan
-    if (!data.name?.trim() || data.name.trim().length < 2) {
-      return 'Imię i nazwisko kapitana jest wymagane.';
-    }
-    if (filter.isProfane(data.name)) {
-      return 'Imię kapitana zawiera niedozwolone słowa.';
-    }
-
-    // Telefon
-    if (!/^\d{9}$/.test(data.telephone)) {
-      return 'Numer telefonu musi mieć dokładnie 9 cyfr.';
-    }
-
-    // Email
-    if (!/\S+@\S+\.\S+/.test(data.email)) {
-      return 'Niepoprawny adres email.';
-    }
-
-    // Nazwa drużyny
-    if (!data.teamName?.trim() || data.teamName.trim().length < 2) {
-      return 'Nazwa drużyny jest wymagana.';
-    }
-    if (filter.isProfane(data.teamName)) {
-      return 'Nazwa drużyny zawiera niedozwolone słowa.';
-    }
-
-    // Zawodnicy
-    for (let i = 1; i <= 6; i++) {
-      const prefix = `teamMember${i}`;
-      const optional = i === 6;
-
-      const firstName = data[`${prefix}Name`]?.trim();
-      const lastName  = data[`${prefix}LastName`]?.trim();
-      const steam     = data[`${prefix}Steam`];
-      const birthDate = data[`${prefix}BirthDate`];
-      const shirtSize = data[`${prefix}ShirtSize`];
-
-      // Pomijamy opcjonalnego rezerwowego, jeśli pola są puste
-      if (optional && !firstName && !lastName && !steam) {
-        continue;
-      }
-
-      if (!firstName || firstName.length < 2) {
-        return `Imię zawodnika ${i} jest wymagane.`;
-      }
-      if (filter.isProfane(firstName)) {
-        return `Imię zawodnika ${i} zawiera niedozwolone słowa.`;
-      }
-
-      if (!lastName || lastName.length < 2) {
-        return `Nazwisko zawodnika ${i} jest wymagane.`;
-      }
-      if (filter.isProfane(lastName)) {
-        return `Nazwisko zawodnika ${i} zawiera niedozwolone słowa.`;
-      }
-
-      if (!/^https:\/\/steamcommunity\.com\/profiles\/\d{17}\/?$/.test(steam)) {
-        return `Link Steam zawodnika ${i} jest niepoprawny.`;
-      }
-
-      if (!birthDate || new Date(birthDate) > new Date(date2007)) {
-        return `Zawodnik ${i} musi być urodzony przed ${date2007}.`;
-      }
-
-      if (!shirtSizes.includes(shirtSize)) {
-        return `Niepoprawny rozmiar koszulki zawodnika ${i}.`;
-      }
-    }
-
-    return null;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const rawData = Object.fromEntries(formData.entries());
 
-  if (
-    !data.teamMember6Name?.trim() &&
-    !data.teamMember6LastName?.trim() &&
-    !data.teamMember6Steam?.trim()
-  ) {
-    data.teamMember6BirthDate = '';
-    data.teamMember6ShirtSize  = '';
-  }
-console.log(data);
+    const members = [];
+    for (let i = 1; i <= 6; i++) {
+      const prefix = `teamMember${i}`;
+      const firstName = rawData[`${prefix}Name`]?.trim() || '';
+      const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
+      const steam     = rawData[`${prefix}Steam`] || '';
+      const birthdate = rawData[`${prefix}BirthDate`] || '';
+      const shirtSize = rawData[`${prefix}shirtSize`] || '';
+
+      const isOptional = i === 6;
+      const isEmpty = !firstName && !lastName && !steam && !birthdate && !shirtSize;
+      if (isOptional && isEmpty) {
+        continue;
+      }
+
+      members.push({ firstName, lastName, steam, birthdate, shirtSize });
+    }
+
+    const data = {
+      team: {
+        captainName: rawData.name.trim(),
+        captainPhone: rawData.telephone,
+        captainEmail: rawData.email.trim(),
+        teamName: rawData.teamName.trim()
+      },
+      members
+    }
+
     const validationError = validateForm(data);
     if (validationError) {
       setError(validationError);
       return;
     }
 
-    fetch("http://localhost:8080/", {
+    fetch("/.netlify/functions/registerTeam", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "x-api-key": process.env.VITE_FRONTEND_KEY},
       body: JSON.stringify(data),
     })
       .then((res) => {
@@ -157,7 +106,6 @@ console.log(data);
             name="telephone"
             placeholder="123456789"
             pattern="[0-9]{9}"
-            title="Numer telefonu musi składać się z 9 cyfr."
             required
             className={commonStyle}
           />
@@ -255,7 +203,7 @@ console.log(data);
                   <label className="block text-lg mt-2 pt-3">
                     Rozmiar koszulki
                     <select
-                      name={`${tmNo}ShirtSize`}
+                      name={`${tmNo}shirtSize`}
                       defaultValue="M"
                       required={required}
                       className={`${commonStyle} mt-1`}

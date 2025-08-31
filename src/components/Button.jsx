@@ -21,7 +21,7 @@ function Button(props) {
             <div className="flex justify-center items-center">
                 <Link
                     to={route}
-                    className="flex justify-center items-center w-fit rounded-[10px] bg-[var(--main-color)] text-white font-[Montserrat-SemiBold] px-6 py-2 uppercase transition-all hover:bg-[var(--main-color)] hover:text-white focus:bg-[var(--main-color)] focus:text-white"
+                    className="flex justify-center items-center text-xl font-bold"
                 >
                     {children}
                 </Link>
