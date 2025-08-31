@@ -31,6 +31,10 @@ export async function handler(event) {
     for (const member of members) {
         const { firstName, lastName, steam, birthDate, shirtSize } = member;
 
+        if (!firstName && !lastName && !steam && !birthDate && !shirtSize && index === 5) {
+            continue;
+        }
+
         if (!firstName || !lastName || !steam || !shirtSize) {
             return { statusCode: 400, body: "Wypełnij wszystkie pola zawodnika!" };
         }
@@ -53,7 +57,7 @@ export async function handler(event) {
         await client.query("BEGIN");
 
         const result = await client.query(
-            `INSERT INTO Teams (TeamName, CaptainName, CaptainTel, CaptainEmail) 
+            `INSERT INTO "Teams" (TeamName, CaptainName, CaptainTel, CaptainEmail) 
              VALUES ($1, $2, $3, $4) RETURNING id`,
             [team.teamName, team.captainName, team.captainTel, team.captainEmail]
         );
@@ -62,7 +66,7 @@ export async function handler(event) {
         for (const member of members) {
             const { firstName, lastName, steam, birthDate, shirtSize } = member;
             await client.query(
-                `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, TeamId) 
+                `INSERT INTO "Players" (Name, Surname, Steam, birthDate, ShirtSize, TeamId) 
                  VALUES ($1, $2, $3, $4, $5, $6)`,
                 [firstName, lastName, steam, birthDate, shirtSize, teamId]
             );
