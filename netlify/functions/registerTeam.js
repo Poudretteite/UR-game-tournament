@@ -20,15 +20,19 @@ export async function handler(event) {
     
     const { team, members } = data;
 
-    if (!team || !Array.isArray(members) || members.length === 0) {
-        return { statusCode: 400, body: "Wypełnij wszystkie pola." };
+    if (!team || !team.teamName || !team.captainName || !team.captainTel || !team.captainEmail) {
+        return { statusCode: 400, body: "Wypełnij wszystkie pola drużyny!" };
+    }
+
+    if (!Array.isArray(members) || (members.length > 0 && members.length <= 6)) {
+        return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
     }
 
     for (const member of members) {
-        const {firstName, lastName, steam, birthDate, shirtSize} = member;
+        const { firstName, lastName, steam, birthDate, shirtSize } = member;
 
         if (!firstName || !lastName || !steam || !shirtSize) {
-            return { statusCode: 400, body: "Wypełnij wszystkie pola!" };
+            return { statusCode: 400, body: "Wypełnij wszystkie pola zawodnika!" };
         }
 
         if (birthDate && isNaN(Date.parse(birthDate))) {
@@ -40,16 +44,13 @@ export async function handler(event) {
     if (validationError) {
         return { 
             statusCode: 400, 
-            body: JSON.stringify({ 
-                success: false, message: validationError }) 
-            };
+            body: JSON.stringify({ success: false, message: validationError }) 
+        };
     }
 
     const client = await pool.connect();
     try {
-        console.log("Connecting to DB...");
         await client.query("BEGIN");
-        console.log("DB connected");
 
         const result = await client.query(
             `INSERT INTO Teams (TeamName, CaptainName, CaptainTel, CaptainEmail) 
@@ -59,11 +60,11 @@ export async function handler(event) {
         const teamId = result.rows[0].id;
 
         for (const member of members) {
-            const {firstName, lastName, steam, birthDate, shirtSize} = member;
+            const { firstName, lastName, steam, birthDate, shirtSize } = member;
             await client.query(
                 `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, TeamId) 
                  VALUES ($1, $2, $3, $4, $5, $6)`,
-                [member.firstName, member.lastName, member.steam, member.birthDate, member.shirtSize, teamId]
+                [firstName, lastName, steam, birthDate, shirtSize, teamId]
             );
         }
 
@@ -73,7 +74,7 @@ export async function handler(event) {
     } catch (err) {
         await client.query("ROLLBACK");
         console.error("Błąd serwera:", err);
-        return { statusCode: 500, body: "Błąd serwera" + err.message};
+        return { statusCode: 500, body: "Błąd serwera: " + err.message };
     } finally {
         client.release();
     }
