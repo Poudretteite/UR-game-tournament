@@ -28,21 +28,27 @@ export async function handler(event) {
         return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
     }
 
-    for (const member of members) {
-        const { firstName, lastName, steam, birthDate, shirtSize } = member;
-
-        if (!firstName && !lastName && !steam && !birthDate && !shirtSize && index === 5) {
-            continue;
+    for (let i = 0; i < members.length; i++) {
+        const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
+      
+        if (i === 5 && !firstName && !lastName && !steam && !birthDate && !shirtSize) {
+          continue;
         }
-
+      
         if (!firstName || !lastName || !steam || !shirtSize) {
-            return { statusCode: 400, body: "Wypełnij wszystkie pola zawodnika!" };
+          return {
+            statusCode: 400,
+            body: `Wypełnij wszystkie pola zawodnika nr ${i + 1}!`
+          };
         }
-
+      
         if (birthDate && isNaN(Date.parse(birthDate))) {
-            return { statusCode: 400, body: "Niepoprawny format daty urodzenia." };
+          return {
+            statusCode: 400,
+            body: `Niepoprawny format daty urodzenia zawodnika nr ${i + 1}.`
+          };
         }
-    }
+      }
 
     const validationError = validateForm(data);
     if (validationError) {
@@ -57,7 +63,7 @@ export async function handler(event) {
         await client.query("BEGIN");
 
         const result = await client.query(
-            `INSERT INTO "Teams" (TeamName, CaptainName, CaptainTel, CaptainEmail) 
+            `INSERT INTO Teams (TeamName, CaptainName, CaptainTel, CaptainEmail) 
              VALUES ($1, $2, $3, $4) RETURNING id`,
             [team.teamName, team.captainName, team.captainTel, team.captainEmail]
         );
@@ -66,7 +72,7 @@ export async function handler(event) {
         for (const member of members) {
             const { firstName, lastName, steam, birthDate, shirtSize } = member;
             await client.query(
-                `INSERT INTO "Players" (Name, Surname, Steam, birthDate, ShirtSize, TeamId) 
+                `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, Team_id) 
                  VALUES ($1, $2, $3, $4, $5, $6)`,
                 [firstName, lastName, steam, birthDate, shirtSize, teamId]
             );
