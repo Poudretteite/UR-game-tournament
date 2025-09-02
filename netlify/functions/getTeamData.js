@@ -24,41 +24,6 @@ const pool = new Pool({
 
   const client = await pool.connect();
   try {
-    // const result = await client.query(`
-    //   SELECT 
-    //     t.TeamName, t.CaptainName, t.CaptainTel, t.CaptainEmail, 
-    //     p.id, p.name, p.surname, p.Steam, p.BirthDate, p.ShirtSize, p.team_id
-    //   FROM Teams t
-    //   JOIN Players p ON t.id = p.team_id
-    //   ORDER BY t.id, p.id
-    // `);
-
-    // const jsonString = JSON.stringify(result.rows, null, 2);
-    // const csv = Papa.unparse({
-    //   fields: [
-    //     { label: "Nazwa Drużyny", value: "teamname" },
-    //     { label: "Imię I Nazwisko Kapitana", value: "captainname" },
-    //     { label: "Telefon Kapitana", value: "captaintel" },
-    //     { label: "Email Kapitana", value: "captainemail" },
-    //   ]
-    // });
-
-    // const zip = new JSZip();
-    // zip.file("team_data.json", jsonString);
-    // zip.file("team_data.csv", csv);
-
-    // const zipContent = await zip.generateAsync({ type: "base64" });
-
-    // return {
-    //   statusCode: 200,
-    //   headers: {
-    //     "Content-Type": "application/zip",
-    //     "Content-Disposition": "attachment; filename=team_data.zip",
-    //   },
-    //   isBase64Encoded: true,
-    //   body: zipContent
-    // };
-
     const teams = await client.query(`
       SELECT * FROM Teams ORDER BY id
     `);
