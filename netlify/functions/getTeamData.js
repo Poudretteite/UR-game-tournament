@@ -26,10 +26,10 @@ const pool = new Pool({
     const result = await client.query(`
       SELECT 
         t.TeamName, t.CaptainName, t.CaptainTel, t.CaptainEmail, 
-        m.FirstName, m.LastName, m.Steam, m.BirthDate, m.ShirtSize
+        p.id, p.name, p.surname, p.Steam, p.BirthDate, p.ShirtSize, p.team_id
       FROM Teams t
-      JOIN Members m ON t.id = m.TeamID
-      ORDER BY t.id, m.id
+      JOIN Players p ON t.id = p.team_id
+      ORDER BY t.id, p.id
     `);
 
     const jsonString = JSON.stringify(result.rows, null, 2);
