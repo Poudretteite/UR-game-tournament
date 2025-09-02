@@ -19,6 +19,12 @@ export async function handler(event) {
     } catch {
         return { statusCode: 400, body: "Invalid JSON" };
     }
+
+    const validationError = validateForm(data);
+    if (validationError) {
+        setError(validationError);
+        return;
+    }
     
     const { team, members } = data;
 
