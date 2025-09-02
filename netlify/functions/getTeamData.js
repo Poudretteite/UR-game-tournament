@@ -48,7 +48,7 @@ const pool = new Pool({
         "Content-Disposition": "attachment; filename=team_data.zip",
       },
       isBase64Encoded: true,
-      body: csv
+      body: zipContent
     };
 
   } catch (err) {
