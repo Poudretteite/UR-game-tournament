@@ -13,8 +13,8 @@ const Home = () => {
             <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block z-20" />
             <ElectricBorder
             color="#7df9ff"
-            speed={1}
-            chaos={0.5}
+            speed={0.5}
+            chaos={1.2}
             thickness={2}
             style={{ borderRadius: 16 }}
             className="-z-10"
