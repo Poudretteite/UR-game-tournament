@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import { validateForm } from "./validateForm.js";
+import { rateLimit } from "./rateLimit.js";
 import nodemailer from 'nodemailer';
 
 
@@ -9,6 +10,11 @@ const pool = new Pool({
 });
 
 export async function handler(event) {
+    const ip = event.headers['x-forwarded-for'] || event.ip || 'unknown';
+
+    if (rateLimit(ip)) {
+        return { statusCode: 429, body: "Za dużo żądań. Spróbuj ponownie później." };
+    }
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Niedozwolona metoda." };
     }
@@ -17,7 +23,7 @@ export async function handler(event) {
     try {
         data = JSON.parse(event.body);
     } catch {
-        return { statusCode: 400, body: "Invalid JSON" };
+        return { statusCode: 400, body: "niepoprawny JSON" };
     }
 
     const validationError = validateForm(data);
@@ -27,35 +33,6 @@ export async function handler(event) {
     }
     
     const { team, members } = data;
-
-    if (!team || !team.teamName || !team.captainName || !team.captainTel || !team.captainEmail) {
-        return { statusCode: 400, body: "Wypełnij wszystkie pola drużyny!" };
-    }
-    if (!Array.isArray(members) || members.length < 5 || members.length > 6) {
-        return { statusCode: 400, body: "Wypełnij wszystkich zawodników!" };
-    }
-
-    for (let i = 0; i < members.length; i++) {
-        const { firstName, lastName, steam, birthDate, shirtSize } = members[i];
-        const isOptional = i === 5;
-        const isEmpty = !firstName && !lastName && !steam;
-
-        if (isOptional && isEmpty) continue;
-
-        if (!firstName || !lastName || !steam || !shirtSize) {
-            return {
-                statusCode: 400,
-                body: `Wypełnij wszystkie pola zawodnika nr ${i + 1}!`
-            };
-        }
-
-        if (birthDate && isNaN(Date.parse(birthDate))) {
-            return {
-                statusCode: 400,
-                body: `Niepoprawny format daty urodzenia zawodnika nr ${i + 1}.`
-            };
-        }
-    }
 
     const client = await pool.connect();
     try {

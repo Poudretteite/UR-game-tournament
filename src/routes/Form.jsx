@@ -23,7 +23,7 @@ function Form() {
       const prefix = `teamMember${i}`;
       const firstName = rawData[`${prefix}Name`]?.trim() || '';
       const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
-      const steam     = rawData[`${prefix}Steam`] || '';
+      const steam     = rawData[`${prefix}Steam`]?.trim() || '';
       const birthDate = rawData[`${prefix}birthDate`] || '';
       const shirtSize = rawData[`${prefix}shirtSize`] || '';
 
@@ -39,7 +39,7 @@ function Form() {
     const data = {
       team: {
         captainName: rawData.name.trim(),
-        captainTel: rawData.telephone,
+        captainTel: rawData.telephone.trim(),
         captainEmail: rawData.email.trim(),
         teamName: rawData.teamName.trim()
       },
@@ -67,7 +67,7 @@ function Form() {
       navigate("/thankyou");
     } catch (err) {
       console.error(err);
-      setError(err.toString());
+      setError(err.message || "Coś poszło nie tak!");
     }
   };
 
@@ -151,7 +151,13 @@ function Form() {
               return (
                 <div key={i} className="p-5 pt-10">
                   <h3 className="text-3xl h-16 font-semibold">
-                    {optional ? "Zawodnik rezerwowy (opcjonalnie)" : `Zawodnik ${i + 1}`}
+                  {
+                    optional
+                      ? "Zawodnik rezerwowy (opcjonalnie)"
+                      : i != 0
+                        ? `Zawodnik ${i + 1}`
+                        : `Zawodnik ${i + 1} Kapitan`
+                  }
                   </h3>
 
                   <label className="block text-lg mt-2 pt-3">
@@ -255,7 +261,7 @@ function Form() {
       {error && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
           <div className="bg-red-700 p-6 rounded max-w-md w-full text-center">
-            <h2 className="font-bold mb-2">Error</h2>
+            <h2 className="font-bold mb-2">Błąd</h2>
             <p>{error}</p>
             <button onClick={() => setError('')} className="px-4 py-2 bg-black rounded">
               Zamknij

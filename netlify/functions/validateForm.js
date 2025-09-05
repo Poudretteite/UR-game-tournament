@@ -3,12 +3,23 @@ import { Filter } from "bad-words";
 const filter = new Filter();
 const date2007 = "2007-08-06";
 const shirtSizes = ["S", "M", "L", "XL"];
+const nameRegex = /^(?=.{1,30}$)[\p{L}]+(?:[ '-][\p{L}]+)*$/u;
+
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
+}
 
 export function validateForm(data) {
   // Kapitan
   if (!data.team.captainName?.trim() || data.team.captainName.trim().length < 2) {
     return 'Imię i nazwisko kapitana jest wymagane.';
   }
+
+  if(!nameRegex.test(data.team.captainName)){
+    return 'Imię lub nazwisko kapitana zawiera niedozwolone znaki.';
+  }
+
   if (filter.isProfane(data.team.captainName)) {
     return 'Imię kapitana zawiera niedozwolone słowa.';
   }
@@ -42,9 +53,20 @@ export function validateForm(data) {
       continue;
     }
 
+    if (index == 0) {
+      if (memeber.firstName.toLowerCase() + " " + member.lastName.toLowerCase() !== data.team.captainName.toLowerCase()) {
+        return 'Imię i nazwisko kapitana musi zgadzać się z danymi pierwszego zawodnika.';
+      }
+    }
+
     if (!member.firstName || member.firstName.length < 2) {
       return `Imię zawodnika ${i} jest wymagane.`;
     }
+
+    if(!nameRegex.test(member.firstName)){
+      return 'Imię zawodnika ${i} zawiera niedozwolone znaki.';
+    }
+
     if (filter.isProfane(member.firstName)) {
       return `Imię zawodnika ${i} zawiera niedozwolone słowa.`;
     }
@@ -52,6 +74,11 @@ export function validateForm(data) {
     if (!member.lastName || member.lastName.length < 2) {
       return `Nazwisko zawodnika ${i} jest wymagane.`;
     }
+
+    if(!nameRegex.test(member.lastName)){
+      return 'Nazwisko zawodnika ${i} zawiera niedozwolone znaki.';
+    }
+
     if (filter.isProfane(member.lastName)) {
       return `Nazwisko zawodnika ${i} zawiera niedozwolone słowa.`;
     }
@@ -60,7 +87,7 @@ export function validateForm(data) {
       return `Link Steam zawodnika ${i} jest niepoprawny.`;
     }
 
-    if (!member.birthDate || new Date(member.birthDate) > new Date(date2007)) {
+    if (!member.birthDate || new Date(member.birthDate) > new Date(date2007) || isNaN(new Date(member.birthDate))) {
       return `Zawodnik ${i} musi być urodzony przed ${date2007}.`;
     }
 
