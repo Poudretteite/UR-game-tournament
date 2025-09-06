@@ -1,4 +1,7 @@
 import React from 'react';
+import { BsTwitterX } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -10,37 +13,25 @@ const Footer = () => {
                     href="https://www.facebook.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
+                    className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
                 >
-                    <img
-                        src="/src/components/icons/facebook.png"
-                        alt="Facebook"
-                        className="w-full h-full object-contain rounded-full"
-                    />
+                    <BsFacebook className='text-white text-3xl'/>
                 </a>
                 <a
                     href="https://x.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
+                    className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
                 >
-                    <img 
-                        className="w-full h-full object-contain rounded-full"
-                        src="/src/components/icons/X.png"
-                        alt="Twitter/X"
-                    />
+                    <BsTwitterX className='text-white text-3xl'/>
                 </a>
                 <a
                     href="https://www.instagram.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
+                    className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
                 >
-                    <img
-                        src="/src/components/icons/instagram.png"
-                        alt="Instagram"
-                        className="w-full h-full object-contain rounded-full"
-                    />
+                    <BsInstagram className='text-white text-3xl'/>
                 </a>
             </div>
             <div className=" flex flex-col items-center justify-center text-center p-5">

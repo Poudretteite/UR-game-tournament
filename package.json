@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.7",
+    "@heroicons/react": "^2.2.0",
     "@neondatabase/serverless": "^1.0.1",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
@@ -27,12 +29,14 @@
     "json2csv": "^6.0.0-alpha.2",
     "jszip": "^3.10.1",
     "lucide-react": "^0.542.0",
+    "motion": "^12.23.12",
     "nodemailer": "^7.0.6",
     "papaparse": "^5.5.3",
     "pg": "^8.16.3",
     "postprocessing": "^6.37.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.8.2",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",

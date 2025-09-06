@@ -72,13 +72,13 @@ function Form() {
   };
 
   const commonStyle =
-    "focus:border-blue-500 border p-4 border-black bg-[#edcc5e] text-white w-full italic h-14";
+    "focus:border-blue-500 border border-[#57aeb2] p-4 border- bg-[#080e0e8f] text-white w-full italic h-14";
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block" />
-      <form onSubmit={handleSubmit} className="space-y-6 pt-32 p-6 bg-[#d4af37]">
-      <h1 className="text-5xl font-bold text-center mb-6 pt-3">REJESTRACJA</h1>
+    <main className="max-w-4xl mx-auto text-white">
+      <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block drop-shadow-[0_0_20px_#57aeb255]" />
+      <form onSubmit={handleSubmit} className="flex flex-col py-10 md:pt-32 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#57aeb2]">
+      <h1 className="text-5xl font-bold text-center text-[#57aeb2] mb-6 pt-3">REJESTRACJA</h1>
         <input type="hidden" name="form-name" value="contact" />
 
         {/* Kapitan */}

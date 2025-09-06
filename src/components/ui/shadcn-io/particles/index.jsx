@@ -44,7 +44,7 @@ function hexToRgb(hex) {
 export const Particles = ({
   className = "",
   quantity = 300,
-  staticity = 40,
+  staticity = 20,
   ease = 90,
   size = 1.3,
   refresh = false,
