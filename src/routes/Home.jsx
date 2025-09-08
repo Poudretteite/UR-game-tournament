@@ -22,7 +22,7 @@ const Home = () => {
             style={{ borderRadius: 16 }}
             className="-z-10"
             >
-                <div className="flex flex-col py-10 md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
+                <div className="flex flex-col py-10  md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <FuzzyText fontFamily='League Spartan'>Ogólnopolski Turniej E-Sportowy</FuzzyText>
                     <section>
                         <h2 className={h2}>Zapisy</h2>

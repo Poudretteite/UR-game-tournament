@@ -8,7 +8,7 @@ import { RetroGrid } from "./components/ui/shadcn-io/retro-grid";
 function App() {
   return (
     <>
-    <div className="flex flex-col min-h-screen bg-[#07102c] z-10">
+    <div className="flex flex-col min-h-screen bg-[#07102c] z-10 overflow-hidden">
       <Header/>
       <main className="flex-grow z-20">
         <Outlet/>

@@ -58,8 +58,8 @@ const ElectricBorder = ({ children, color = '#5227FF', speed = 1, chaos = 1, thi
     if (filterEl) {
       filterEl.setAttribute('x', '-200%');
       filterEl.setAttribute('y', '-200%');
-      filterEl.setAttribute('width', '500%');
-      filterEl.setAttribute('height', '500%');
+      filterEl.setAttribute('width', '700%');
+      filterEl.setAttribute('height', '700%');
     }
 
     requestAnimationFrame(() => {
