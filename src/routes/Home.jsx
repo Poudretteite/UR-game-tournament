@@ -6,23 +6,23 @@ import ElectricBorder from '../components/ui/shadcn-io/electricBorder/electric-b
 import FuzzyText from '../components/ui/shadcn-io/fuzzyText/fuzzy-text';
 import CountUp from '../components/ui/shadcn-io/CountUp/count-up';
 
-const h2 = "text-4xl font-semibold text-[#57aeb2] italic";
+const h2 = "text-4xl font-semibold text-[#0443cc] italic";
 const h3 = "text-3xl font-semibold";
 
 const Home = () => {
     return (
         <>
             <main className='max-w-4xl mx-auto tracking-widest text-white'>
-            <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block z-20 drop-shadow-[0_0_20px_#57aeb2aa]" />
+            <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block z-20 drop-shadow-[0_0_20px_#1952ffaa]" />
             <ElectricBorder
-            color="#7df9ff"
+            color="#1952ff"
             speed={0.5}
-            chaos={1.2}
+            chaos={2}
             thickness={2}
             style={{ borderRadius: 16 }}
             className="-z-10"
             >
-                <div className="flex flex-col py-10 md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-black/50 bg-opacity-30 rounded-2xl">
+                <div className="flex flex-col py-10 md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <FuzzyText fontFamily='League Spartan'>Ogólnopolski Turniej E-Sportowy</FuzzyText>
                     <section>
                         <h2 className={h2}>Zapisy</h2>
