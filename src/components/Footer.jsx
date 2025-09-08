@@ -18,14 +18,6 @@ const Footer = () => {
                     <BsFacebook className='text-white text-3xl'/>
                 </a>
                 <a
-                    href="https://x.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
-                >
-                    <BsTwitterX className='text-white text-3xl'/>
-                </a>
-                <a
                     href="https://www.instagram.com/"
                     target="_blank"
                     rel="noopener noreferrer"
