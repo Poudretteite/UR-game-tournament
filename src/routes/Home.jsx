@@ -44,7 +44,7 @@ const Home = () => {
                         <h3 className={h3}>3 - 26.10.2025</h3>
                     </section>
                     <section>
-                        <h2 className={h2}>Finał</h2>
+                        <h2 className={h2}>Finał - LAN</h2>
                         <h3 className={h3}>12 Listopada</h3>
                     </section>
                     <div className="w-full flex justify-center">
