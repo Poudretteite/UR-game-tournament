@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsTwitterX } from "react-icons/bs";
+import { BsTwitch } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 
@@ -18,7 +18,15 @@ const Footer = () => {
                     <BsFacebook className='text-white text-3xl'/>
                 </a>
                 <a
-                    href="https://www.instagram.com/"
+                    href="https://www.twitch.tv/urgamingtournament"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
+                >
+                    <BsTwitch className='text-white text-3xl'/>
+                </a>
+                <a
+                    href="https://www.instagram.com/urgamingtournament"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
