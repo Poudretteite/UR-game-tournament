@@ -49,11 +49,11 @@ export async function handler(event) {
             m.firstName || m.lastName || m.steam
         );
         for (const member of realMembers) {
-            const { firstName, lastName, steam, birthDate, shirtSize } = member;
+            const { firstName, lastName, steam, faceit, birthDate, shirtSize } = member;
             await client.query(
-                `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, Team_id) 
+                `INSERT INTO Players (Name, Surname, Steam, Faceit, birthDate, ShirtSize, Team_id) 
                  VALUES ($1, $2, $3, $4, $5, $6)`,
-                [firstName, lastName, steam, birthDate, shirtSize, teamId]
+                [firstName, lastName, steam, faceit, birthDate, shirtSize, teamId]
             );
         }
 
@@ -73,7 +73,8 @@ export async function handler(event) {
                     <strong>Zawodnik ${i + 1}:</strong><br>
                     Imię: ${m.firstName} ${m.lastName}<br>
                     Steam: <a href="${m.steam}">${m.steam}</a><br>
-                    Data urodzenia: ${m.birthDate || 'Brak'}<br>
+                    Faceit: <a href="${m.faceit}">${m.faceit}</a><br>
+                    Data urodzenia: ${m.birthDate}<br>
                 </p>
             `
         ).join('');

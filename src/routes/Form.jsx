@@ -23,7 +23,8 @@ function Form() {
       const prefix = `teamMember${i}`;
       const firstName = rawData[`${prefix}Name`]?.trim() || '';
       const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
-      const steam     = rawData[`${prefix}Steam`]?.trim() || '';
+      const steam = rawData[`${prefix}Steam`]?.trim() || '';
+      const faceit = rawData[`${prefix}Faceit`]?.trim() || '';
       const birthDate = rawData[`${prefix}birthDate`] || '';
       const shirtSize = rawData[`${prefix}shirtSize`] || '';
 
@@ -33,7 +34,7 @@ function Form() {
         continue;
       }
 
-      members.push({ firstName, lastName, steam, birthDate, shirtSize });
+      members.push({ firstName, lastName, steam, faceit, birthDate, shirtSize });
     }
 
     const data = {
@@ -196,6 +197,19 @@ function Form() {
                   </label>
 
                   <label className="block text-lg mt-2 pt-3">
+                    Link do profilu Faceit
+                    <input
+                      type="url"
+                      name={`${tmNo}Faceit`}
+                      placeholder="Link"
+                      required={required}
+                      className={commonStyle}
+                      pattern="https:\/\/www\.faceit\.com\/[a-z]{2}\/players\/[A-Za-z0-9_.\-]+\/?"
+                      title="Link musi być w formacie https://www.faceit.com/en/players/<username>"
+                    />
+                  </label>
+
+                  <label className="block text-lg mt-2 pt-3">
                     Data urodzenia
                     <input
                       type="date"
@@ -260,10 +274,10 @@ function Form() {
 
       {error && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
-          <div className="bg-red-700 p-6 rounded max-w-md w-full text-center">
-            <h2 className="font-bold mb-2">Błąd</h2>
-            <p>{error}</p>
-            <button onClick={() => setError('')} className="px-4 py-2 bg-black rounded">
+          <div className='flex flex-col mb-10 space-y-6 p-6 h-a bg-black bg-opacity-70 text-center border border-[#1952ff]'>
+            <h2 className="font-bold text-4xl mb-2">BŁĄD</h2>
+            <p className='text-xl'>{error}</p>
+            <button onClick={() => setError('')} className="py-2 bg-black m-auto border border-white w-32">
               Zamknij
             </button>
           </div>

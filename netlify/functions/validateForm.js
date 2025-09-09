@@ -4,11 +4,7 @@ const filter = new Filter();
 const date2007 = "2007-08-06";
 const shirtSizes = ["S", "M", "L", "XL"];
 const nameRegex = /^(?=.{1,30}$)[\p{L}]+(?:[ '-][\p{L}]+)*$/u;
-
-function escapeHTML(str) {
-  return str.replace(/[&<>"']/g, c =>
-    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
-}
+const teamNameRegex = /^[\p{L}0-9]{2,50}$/u;
 
 export function validateForm(data) {
   // Kapitan
@@ -24,8 +20,9 @@ export function validateForm(data) {
     return 'Imię kapitana zawiera niedozwolone słowa.';
   }
 
+  const tel = data.team.captainTel.replace(/\D/g, '');
   // Telefon
-  if (!/^\d{9}$/.test(data.team.captainTel)) {
+  if (!/^\d{9}$/.test(tel)) {
     return 'Numer telefonu musi mieć dokładnie 9 cyfr.';
   }
 
@@ -38,8 +35,13 @@ export function validateForm(data) {
   if (!data.team.teamName?.trim() || data.team.teamName.trim().length < 2) {
     return 'Nazwa drużyny jest wymagana.';
   }
+
   if (filter.isProfane(data.team.teamName)) {
     return 'Nazwa drużyny zawiera niedozwolone słowa.';
+  }
+
+  if(!teamNameRegex.test(data.team.teamName)){
+    return 'Nazwa drużyny zawiera niedozwolone znaki.';
   }
 
   // Zawodnicy
@@ -54,7 +56,7 @@ export function validateForm(data) {
     }
 
     if (index == 0) {
-      if (memeber.firstName.toLowerCase() + " " + member.lastName.toLowerCase() !== data.team.captainName.toLowerCase()) {
+      if (member.firstName.toLowerCase() + " " + member.lastName.toLowerCase() !== data.team.captainName.toLowerCase()) {
         return 'Imię i nazwisko kapitana musi zgadzać się z danymi pierwszego zawodnika.';
       }
     }
@@ -85,6 +87,10 @@ export function validateForm(data) {
 
     if (!/^https:\/\/steamcommunity\.com\/profiles\/\d{17}\/?$/.test(member.steam)) {
       return `Link Steam zawodnika ${i} jest niepoprawny.`;
+    }
+
+    if (!/^https:\/\/www\.faceit\.com\/[a-z]{2}\/players\/[A-Za-z0-9_.-]+\/?$/.test(member.faceit)) {
+      return `Link Faceit zawodnika ${i} jest niepoprawny.`;
     }
 
     if (!member.birthDate || new Date(member.birthDate) > new Date(date2007) || isNaN(new Date(member.birthDate))) {
