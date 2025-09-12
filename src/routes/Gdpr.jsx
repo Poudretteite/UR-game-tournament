@@ -1,6 +1,5 @@
 import * as React from 'react';
 import assets from '../data/assets.json';
-import DecryptedText from '../components/ui/shadcn-io/decryptedText/decrypted-text';
 
 const Gdpr = () => {
  return (

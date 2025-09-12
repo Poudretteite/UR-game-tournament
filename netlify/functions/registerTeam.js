@@ -48,6 +48,8 @@ export async function handler(event) {
         const realMembers = members.filter(m =>
             m.firstName || m.lastName || m.steam
         );
+        const memberNum = 1;
+
         for (const member of realMembers) {
             const { firstName, lastName, steam, faceit, birthDate, shirtSize } = member;
             await client.query(
@@ -55,6 +57,7 @@ export async function handler(event) {
                  VALUES ($1, $2, $3, $4, $5, $6)`,
                 [firstName, lastName, steam, faceit, birthDate, shirtSize, teamId]
             );
+            memberNum++;
         }
 
         await client.query("COMMIT");
@@ -113,7 +116,18 @@ export async function handler(event) {
         await client.query("ROLLBACK");
 
         if (err.code === '23505') {
-            return { statusCode: 400, body: "Nazwa drużyny jest już zajęta." };
+            switch (err.constraint) {
+                case 'teams_teamname_key':
+                  return { statusCode: 400, body: 'Nazwa drużyny jest już zajęta.' };
+                case 'teams_captainemail_key':
+                  return { statusCode: 400, body: 'Email kapitana jest już zarejestrowany.' };
+                case 'players_steam_key':
+                  return { statusCode: 400, body: `Link Steam zawodnika ${memberNum} jest już zarejestrowany.` };
+                case 'players_faceit_key':
+                  return { statusCode: 400, body: `Link FACEIT zawodnika ${memberNum} jest już zarejestrowany.` };
+                default:
+                  return { statusCode: 400, body: err.detail || err.message };
+            }
         }
 
         console.error("Błąd serwera:", err);

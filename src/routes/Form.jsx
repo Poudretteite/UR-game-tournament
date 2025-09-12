@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import assets from '../data/assets.json';
 import Button from '../components/Button';
 import links from '../data/links.json';
-import { validateForm } from "../../netlify/functions/validateForm.js";
+import { validateForm } from "../functions/validateForm";
 
 const shirtSizes = ["S", "M", "L", "XL"];
 const date2007 = "2007-08-06";
@@ -52,6 +52,7 @@ function Form() {
       setError(validationError);
       return;
     }
+
     try {
       const res = await fetch("/.netlify/functions/registerTeam", {
         method: "POST",
@@ -59,7 +60,7 @@ function Form() {
         body: JSON.stringify(data)
       });
   
-      const text = await res.text(); // now this is the actual string
+      const text = await res.text(); 
   
       if (!res.ok) {
         throw new Error(text || "Błąd serwera!");
@@ -73,7 +74,7 @@ function Form() {
   };
 
   const commonStyle =
-    "focus:border-blue-500 border border-[#1952ff] p-4 border- bg-[#080e0e8f] text-white w-full italic h-14";
+    'border border-[#1952ff] focus:border-[#1952ff] p-4 bg-[#080e0e8f] w-full italic h-14';
 
   return (
     <main className="max-w-4xl mx-auto text-white">
@@ -92,6 +93,9 @@ function Form() {
             id="name"
             name="name"
             placeholder="Imię i nazwisko"
+            minlength="2"
+            onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
+            onChange={(e) => e.target.setCustomValidity('')}
             required
             className={commonStyle}
           />
@@ -106,6 +110,8 @@ function Form() {
             id="telephone"
             name="telephone"
             placeholder="123456789"
+            onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać 9-cyfrowy numer telefonu.')}
+            onChange={(e) => e.target.setCustomValidity('')}
             pattern="[0-9]{9}"
             required
             className={commonStyle}
@@ -121,6 +127,8 @@ function Form() {
             id="email"
             name="email"
             placeholder="Email"
+            onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać poprawny adres email.')}
+            onChange={(e) => e.target.setCustomValidity('')}
             required
             className={commonStyle}
           />
@@ -135,6 +143,9 @@ function Form() {
             id="teamName"
             name="teamName"
             placeholder="Nazwa Drużyny"
+            minlength="2"
+            onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
+            onChange={(e) => e.target.setCustomValidity('')}
             required
             className={commonStyle}
           />
@@ -148,6 +159,7 @@ function Form() {
               const optional = i === 5;
               const tmNo = `teamMember${i + 1}`;
               const required = !optional;
+
 
               return (
                 <div key={i} className="p-5 pt-10">
@@ -167,6 +179,9 @@ function Form() {
                       type="text"
                       name={`${tmNo}Name`}
                       placeholder="Imię"
+                      minlength="2"
+                      onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
+                      onChange={(e) => e.target.setCustomValidity('')}
                       required={required}
                       className={commonStyle}
                     />
@@ -178,6 +193,9 @@ function Form() {
                       type="text"
                       name={`${tmNo}LastName`}
                       placeholder="Nazwisko"
+                      minlength="2"
+                      onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
+                      onChange={(e) => e.target.setCustomValidity('')}
                       required={required}
                       className={commonStyle}
                     />
@@ -189,6 +207,8 @@ function Form() {
                       type="url"
                       name={`${tmNo}Steam`}
                       placeholder="Link"
+                      onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać link do profilu Steam.')}
+                      onChange={(e) => e.target.setCustomValidity('')}
                       required={required}
                       className={commonStyle}
                       pattern="^https://steamcommunity\.com/profiles/\d{17}/?$"
@@ -202,6 +222,8 @@ function Form() {
                       type="url"
                       name={`${tmNo}Faceit`}
                       placeholder="Link"
+                      onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać link do profilu FACEIT.')}
+                      onChange={(e) => e.target.setCustomValidity('')}
                       required={required}
                       className={commonStyle}
                       pattern="https:\/\/www\.faceit\.com\/[a-z]{2}\/players\/[A-Za-z0-9_.\-]+\/?"

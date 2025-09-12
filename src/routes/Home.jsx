@@ -3,7 +3,6 @@ import TwitchEmbed from '../components/TwitchEmbed';
 import assets from '../data/assets.json';
 import Sponsors from '../components/Sponsors';
 import ElectricBorder from '../components/ui/shadcn-io/electricBorder/electric-border';
-import FuzzyText from '../components/ui/shadcn-io/fuzzyText/fuzzy-text';
 import CountUp from '../components/ui/shadcn-io/countUp/count-up';
 
 const h2 = "text-4xl font-semibold text-[#0443cc] italic";
