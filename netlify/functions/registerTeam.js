@@ -28,8 +28,7 @@ export async function handler(event) {
 
     const validationError = validateForm(data);
     if (validationError) {
-        setError(validationError);
-        return;
+        return { statusCode: 400, body: validationError };
     }
     
     const { team, members } = data;
