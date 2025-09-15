@@ -48,7 +48,7 @@ export async function handler(event) {
         const realMembers = members.filter(m =>
             m.firstName || m.lastName || m.steam
         );
-        const memberNum = 1;
+        let memberNum = 1;
 
         for (const member of realMembers) {
             const { firstName, lastName, steam, faceit, birthDate, shirtSize } = member;
