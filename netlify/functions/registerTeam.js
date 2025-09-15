@@ -54,7 +54,7 @@ export async function handler(event) {
             const { firstName, lastName, steam, faceit, birthDate, shirtSize } = member;
             await client.query(
                 `INSERT INTO Players (Name, Surname, Steam, Faceit, birthDate, ShirtSize, Team_id) 
-                 VALUES ($1, $2, $3, $4, $5, $6)`,
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
                 [firstName, lastName, steam, faceit, birthDate, shirtSize, teamId]
             );
             memberNum++;

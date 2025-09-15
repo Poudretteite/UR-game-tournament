@@ -111,7 +111,7 @@ export function validateForm(data) {
   }
 
   const faceitIDs = data.members.map(member => member.faceit.trim());
-  const uniqueFaceitIDs = new Set(steamIDs);
+  const uniqueFaceitIDs = new Set(faceitIDs);
 
   if (uniqueFaceitIDs.size !== faceitIDs.length) {
     return 'Każdy link FACEIT musi być unikalny.';
