@@ -49,12 +49,6 @@ export function validateForm(data) {
   for (let index = 0; index < data.members.length; index++) {
     const member = data.members[index];
     const i = index + 1;
-    const optional = i === 6;
-
-    // Pomijamy opcjonalnego rezerwowego, jeśli pola są puste
-    if (optional && !member.firstName && !member.lastName && !member.steam) {
-      continue;
-    }
 
     if (index == 0) {
       if (member.firstName.toLowerCase() + " " + member.lastName.toLowerCase() !== data.team.captainName.toLowerCase()) {
@@ -90,10 +84,6 @@ export function validateForm(data) {
       return `Link Steam zawodnika ${i} jest niepoprawny.`;
     }
 
-    if (!/^https:\/\/www\.faceit\.com\/[a-z]{2}\/players\/[A-Za-z0-9_.-]+\/?$/.test(member.faceit)) {
-      return `Link Faceit zawodnika ${i} jest niepoprawny.`;
-    }
-
     if (!member.birthDate || new Date(member.birthDate) > new Date(date2007) || isNaN(new Date(member.birthDate))) {
       return `Zawodnik ${i} musi być urodzony przed ${date2007}.`;
     }
@@ -109,13 +99,6 @@ export function validateForm(data) {
   if (uniqueSteamIDs.size !== steamIDs.length) {
     return 'Każdy link Steam musi być unikalny.';
   }
-
-  const faceitIDs = data.members.map(member => member.faceit.trim());
-  const uniqueFaceitIDs = new Set(faceitIDs);
-
-  if (uniqueFaceitIDs.size !== faceitIDs.length) {
-    return 'Każdy link FACEIT musi być unikalny.';
-  }  
 
   return null;
 }

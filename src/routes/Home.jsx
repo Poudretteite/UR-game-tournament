@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TwitchEmbed from '../components/TwitchEmbed';
 import assets from '../data/assets.json';
 import Sponsors from '../components/Sponsors';
 import ElectricBorder from '../components/ui/shadcn-io/electricBorder/electric-border';
@@ -25,7 +24,7 @@ const Home = () => {
                     <p className='text-6xl font-bold'>Ogólnopolski Turniej <br /> E-Sportowy</p>
                     <section>
                         <h2 className={h2}>Zapisy</h2>
-                        <h3 className={h3}>15 - 30.09.2025</h3>
+                        <h3 className={h3}>3 - 22.10.2025</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Pula nagród</h2>
@@ -39,18 +38,13 @@ const Home = () => {
                         />&nbsp;ZŁ
                     </section>
                     <section>
-                        <h2 className={h2}>Kwalifikacje</h2>
-                        <h3 className={h3}>3 - 26.10.2025</h3>
+                        <h2 className={h2}>Eliminacje</h2>
+                        <h3 className={h3}>24 - 31.10.2025</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Finał - LAN</h2>
                         <h3 className={h3}>12 Listopada</h3>
                     </section>
-                    <div className="w-full flex justify-center">
-                        <div className="w-full max-w-4xl hidden">
-                        <TwitchEmbed />
-                        </div>
-                    </div>
                 </div>
                 </ElectricBorder>
             </main>

@@ -52,9 +52,9 @@ export async function handler(event) {
         for (const member of realMembers) {
             const { firstName, lastName, steam, faceit, birthDate, shirtSize } = member;
             await client.query(
-                `INSERT INTO Players (Name, Surname, Steam, Faceit, birthDate, ShirtSize, Team_id) 
-                 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-                [firstName, lastName, steam, faceit, birthDate, shirtSize, teamId]
+                `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, Team_id) 
+                 VALUES ($1, $2, $3, $4, $5, $6)`,
+                [firstName, lastName, steam, birthDate, shirtSize, teamId]
             );
             memberNum++;
         }
@@ -75,7 +75,6 @@ export async function handler(event) {
                     <strong>Zawodnik ${i + 1}:</strong><br>
                     Imię: ${m.firstName} ${m.lastName}<br>
                     Steam: <a href="${m.steam}">${m.steam}</a><br>
-                    Faceit: <a href="${m.faceit}">${m.faceit}</a><br>
                     Data urodzenia: ${m.birthDate}<br>
                 </p>
             `
@@ -136,8 +135,6 @@ export async function handler(event) {
                   return { statusCode: 400, body: 'Email kapitana jest już zarejestrowany.' };
                 case 'players_steam_key':
                   return { statusCode: 400, body: `Link Steam zawodnika ${memberNum} jest już zarejestrowany.` };
-                case 'players_faceit_key':
-                  return { statusCode: 400, body: `Link FACEIT zawodnika ${memberNum} jest już zarejestrowany.` };
                 default:
                   return { statusCode: 400, body: err.detail || err.message };
             }

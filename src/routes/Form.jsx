@@ -24,7 +24,6 @@ function Form() {
       const firstName = rawData[`${prefix}Name`]?.trim() || '';
       const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
       const steam = rawData[`${prefix}Steam`]?.trim() || '';
-      const faceit = rawData[`${prefix}Faceit`]?.trim() || '';
       const birthDate = rawData[`${prefix}birthDate`] || '';
       const shirtSize = rawData[`${prefix}shirtSize`] || '';
 
@@ -34,7 +33,7 @@ function Form() {
         continue;
       }
 
-      members.push({ firstName, lastName, steam, faceit, birthDate, shirtSize });
+      members.push({ firstName, lastName, steam, birthDate, shirtSize });
     }
 
     const data = {
@@ -153,23 +152,19 @@ function Form() {
 
         {/* Zawodnicy */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {Array(6)
+          {Array(2)
             .fill(0)
             .map((_, i) => {
-              const optional = i === 5;
               const tmNo = `teamMember${i + 1}`;
-              const required = !optional;
 
 
               return (
                 <div key={i} className="p-5 pt-10">
                   <h3 className="text-3xl h-16 font-semibold">
                   {
-                    optional
-                      ? "Zawodnik rezerwowy (opcjonalnie)"
-                      : i != 0
-                        ? `Zawodnik ${i + 1}`
-                        : `Zawodnik ${i + 1} Kapitan`
+                    i != 0
+                      ? `Zawodnik ${i + 1}`
+                      : `Zawodnik ${i + 1} - Kapitan`
                   }
                   </h3>
 
@@ -182,7 +177,7 @@ function Form() {
                       minlength="2"
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
                       onChange={(e) => e.target.setCustomValidity('')}
-                      required={required}
+                      required
                       className={commonStyle}
                     />
                   </label>
@@ -196,7 +191,7 @@ function Form() {
                       minlength="2"
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
                       onChange={(e) => e.target.setCustomValidity('')}
-                      required={required}
+                      required
                       className={commonStyle}
                     />
                   </label>
@@ -209,25 +204,10 @@ function Form() {
                       placeholder="Link"
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać link do profilu Steam.')}
                       onChange={(e) => e.target.setCustomValidity('')}
-                      required={required}
+                      required
                       className={commonStyle}
                       pattern="^https://steamcommunity\.com/profiles/\d{17}/?$"
                       title="Link musi być w formacie https://steamcommunity.com/profiles/7656119XXXXXXXXXX/"
-                    />
-                  </label>
-
-                  <label className="block text-lg mt-2 pt-3">
-                    Link do profilu Faceit
-                    <input
-                      type="url"
-                      name={`${tmNo}Faceit`}
-                      placeholder="Link"
-                      onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać link do profilu FACEIT.')}
-                      onChange={(e) => e.target.setCustomValidity('')}
-                      required={required}
-                      className={commonStyle}
-                      pattern="https:\/\/www\.faceit\.com\/[a-z]{2}\/players\/[A-Za-z0-9_.\-]+\/?"
-                      title="Link musi być w formacie https://www.faceit.com/en/players/<username>"
                     />
                   </label>
 
@@ -237,7 +217,7 @@ function Form() {
                       type="date"
                       max={date2007}
                       name={`${tmNo}birthDate`}
-                      required={required}
+                      required
                       className={`${commonStyle} py-1`}
                     />
                   </label>
@@ -247,7 +227,7 @@ function Form() {
                     <select
                       name={`${tmNo}shirtSize`}
                       defaultValue="M"
-                      required={required}
+                      required
                       className={`${commonStyle} mt-1`}
                     >
                       {shirtSizes.map((size) => (
