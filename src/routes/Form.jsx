@@ -19,7 +19,7 @@ function Form() {
     const rawData = Object.fromEntries(formData.entries());
 
     const members = [];
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 2; i++) {
       const prefix = `teamMember${i}`;
       const firstName = rawData[`${prefix}Name`]?.trim() || '';
       const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
