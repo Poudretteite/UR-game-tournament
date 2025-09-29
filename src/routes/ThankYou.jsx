@@ -11,7 +11,6 @@ const ThankYou = () => {
                     <h2 className="text-6xl font-semibold py-3 text-white italic">Dziękujemy za rejestrację!</h2>
                     <h2 className="text-3xl font-semibold text-white">Formularz został wysłany pomyślnie.</h2>
                     <h3 className="text-xl text-white">Potwiedzimy twoje zgłoszenie na podany adres e-mail.</h3>
-                    <h3 className="text-xl text-white">W przypadku problemów z potwierdzeniem zgłoszenia skontaktuj się z nami: {assets.form_email}</h3>
                 </div>
             </main>
         </>
