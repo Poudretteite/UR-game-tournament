@@ -100,5 +100,13 @@ export function validateForm(data) {
     return 'Każdy link Steam musi być unikalny.';
   }
 
+  if (!data.agreements?.rulesAccepted) {
+    return "Musisz zaakceptować regulamin turnieju.";
+  }
+  
+  if (!data.agreements?.gdprAccepted) {
+    return "Musisz zaakceptować klauzulę informacyjną dotyczącą ochrony danych osobowych.";
+  }
+
   return null;
 }

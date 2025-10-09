@@ -43,7 +43,11 @@ function Form() {
         captainEmail: rawData.email.trim(),
         teamName: rawData.teamName.trim()
       },
-      members
+      members,
+      agreements: {
+        rulesAccepted: formData.get("rulesAccepted") === 'on',
+        gdprAccepted: formData.get("gdprAccepted") === 'on'
+      }
     }
 
     const validationError = validateForm(data);
@@ -245,7 +249,7 @@ function Form() {
         {/* Oświadczenia */}
         <div className="flex-row space-y-4 mt-4">
           <label className="flex items-center">
-            <input type="checkbox" required className="mr-2 w-6 h-6 shrink-0" />
+            <input type="checkbox" name="rulesAccepted" required className="mr-2 w-6 h-6 shrink-0" />
             <p>
               Oświadczam, że zapoznałem/am się z{' '}
               <Link to={links.Rules} target="_blank" className="underline">
@@ -256,7 +260,7 @@ function Form() {
           </label>
 
           <label className="flex items-center">
-            <input type="checkbox" required className="mr-2 w-6 h-6 shrink-0" />
+            <input type="checkbox" name="gdprAccepted" required className="mr-2 w-6 h-6 shrink-0" />
             <p>
               Oświadczam, że zapoznałem/am się z{' '}
               <Link to="/gdpr" className="underline">
