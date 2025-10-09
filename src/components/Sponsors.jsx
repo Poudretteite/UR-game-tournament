@@ -14,6 +14,16 @@ const sponsorsData = {
       img: '/img/logos/pci-logo.png',
       alt: 'PCI',
     },
+    {
+      name: 'bank_pekao',
+      img: '/img/logos/pekao_logo.png',
+      alt: 'Bank Pekao',
+    },
+    {
+      name: 'uniperks',
+      img: '/img/logos/uniperks_logo.png',
+      alt: 'Uniperks',
+    }
   ],
   patrons: [
     
@@ -25,8 +35,8 @@ const sponsorsData = {
 
 const Sponsors = () => {
   return (
-    <div className="bg-transparent sponsors flex flex-col items-center pt-10 pb-10 w-full px-2">
-      <h4 className="my-8 text-4xl font-bold italic">Organizatorzy</h4>
+    <div className="bg-transparent sponsors flex flex-col items-center pt-10 pb-10 w-full px-2 text-white tracking-widest">
+      <h4 className="my-8 text-4xl font-semibold italic">Organizatorzy</h4>
       <div className="flex flex-wrap gap-14 items-center justify-center ">
         {sponsorsData.organizers.map(({ name, img, alt }) => (
           <div key={name}>
@@ -34,7 +44,7 @@ const Sponsors = () => {
           </div>
         ))}
       </div>
-      <h4 className="my-8 text-4xl font-bold italic">Partnerzy</h4>
+      <h4 className="my-8 text-4xl font-semibold italic">Partnerzy</h4>
       <div className="flex flex-wrap gap-14 items-center justify-center ">
         {sponsorsData.partners.map(({ name, img, alt }) => (
           <div key={name}>
