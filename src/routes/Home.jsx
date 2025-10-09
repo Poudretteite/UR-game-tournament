@@ -24,7 +24,7 @@ const Home = () => {
                     <p className='text-6xl font-bold'>Ogólnopolski Turniej <br /> E-Sportowy</p>
                     <section>
                         <h2 className={h2}>Zapisy</h2>
-                        <h3 className={h3}>3 - 22.10.2025</h3>
+                        <h3 className={h3}>13 - 22.10.2025</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Pula nagród</h2>
