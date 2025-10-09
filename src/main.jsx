@@ -5,7 +5,7 @@ import { useLayoutEffect } from 'react';
 import './index.css'
 import App from './App.jsx'
 import Home from './routes/Home';
-import Form from './routes/Form';
+//import Form from './routes/Form';
 import ThankYou from './routes/ThankYou';
 import Gdpr from './routes/Gdpr';
 import Form_alt from './routes/Form_alt';
