@@ -23,6 +23,11 @@ const sponsorsData = {
       name: 'uniperks',
       img: '/img/logos/uniperks_logo.png',
       alt: 'Uniperks',
+    },
+    {
+      name: 'cityfit',
+      img: '/img/logos/cityfit_logo.png',
+      alt: 'CityFit',
     }
   ],
   patrons: [
@@ -48,7 +53,7 @@ const Sponsors = () => {
       <div className="flex flex-wrap gap-14 items-center justify-center ">
         {sponsorsData.partners.map(({ name, img, alt }) => (
           <div key={name}>
-            <img style={{ maxHeight: '100px', maxWidth: '200px' }} src={img} alt={alt} />
+            <img style={{ maxHeight: '130px', maxWidth: '200px' }} src={img} alt={alt} />
           </div>
         ))}
       </div>
