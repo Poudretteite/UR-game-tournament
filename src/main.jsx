@@ -5,10 +5,9 @@ import { useLayoutEffect } from 'react';
 import './index.css'
 import App from './App.jsx'
 import Home from './routes/Home';
-//import Form from './routes/Form';
+import Form from './routes/Form';
 import ThankYou from './routes/ThankYou';
 import Gdpr from './routes/Gdpr';
-import Form_alt from './routes/Form_alt';
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -23,7 +22,7 @@ createRoot(document.getElementById('root')).render(
     <Wrapper>
       <Routes>
         <Route element={<App />}>
-          <Route path="rejestracja" element={<Form_alt />} />
+          <Route path="rejestracja" element={<Form />} />
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="gdpr" element={<Gdpr />} />
           <Route path="/" element={<Home />} />
