@@ -210,7 +210,7 @@ function Form() {
                       onChange={(e) => e.target.setCustomValidity('')}
                       required
                       className={commonStyle}
-                      pattern="^https://steamcommunity\.com/profiles/\d{17}/?$"
+                      pattern="^https://steamcommunity\.com(/.*)?$"
                       title="Link musi być w formacie https://steamcommunity.com/profiles/7656119XXXXXXXXXX/"
                     />
                   </label>
