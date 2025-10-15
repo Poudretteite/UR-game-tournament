@@ -17,7 +17,7 @@ const Footer = () => {
                     <BsFacebook className='text-white text-3xl'/>
                 </a>
                 <a
-                    href="https://www.instagram.com/urgamingtournament"
+                    href="https://www.instagram.com/samorzad.ur"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
