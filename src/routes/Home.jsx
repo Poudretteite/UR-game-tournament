@@ -4,7 +4,7 @@ import Sponsors from '../components/Sponsors';
 import ElectricBorder from '../components/ui/shadcn-io/electricBorder/electric-border';
 import CountUp from '../components/ui/shadcn-io/countUp/count-up';
 
-const h2 = "text-4xl font-semibold text-[#0443cc] italic";
+const h2 = "text-5xl font-semibold text-[#0443cc] italic";
 const h3 = "text-3xl font-semibold";
 
 const Home = () => {
@@ -27,15 +27,35 @@ const Home = () => {
                         <h3 className={h3}>13 - 22.10.2025</h3>
                     </section>
                     <section>
-                        <h2 className={h2}>Pula nagród</h2>
+                        <h2 className={h2}>Nagrody</h2>
+                        <h3 className="text-2xl font-semibold pb-2 pt-5">I Miejsce</h3>
                         <CountUp
                             from={0}
-                            to={10000}
+                            to={2500}
                             separator=","
                             direction="up"
-                            duration={0.08}
-                            className="count-up-text text-5xl font-semibold"
+                            duration={0.02}
+                            className="text-5xl font-semibold"
                         />&nbsp;ZŁ
+                        <h3 className="text-2xl font-semibold pb-2 pt-5">II Miejsce</h3>
+                        <CountUp
+                            from={0}
+                            to={1500}
+                            separator=","
+                            direction="up"
+                            duration={0.02}
+                            className="text-5xl font-semibold"
+                        />&nbsp;ZŁ
+                        <h3 className="text-2xl font-semibold pb-2 pt-5">III Miejsce</h3>
+                        <CountUp
+                            from={0}
+                            to={1000}
+                            separator=","
+                            direction="up"
+                            duration={0.02}
+                            className="text-5xl font-semibold"
+                        />&nbsp;ZŁ
+                        <h3 className="text-2xl pb-2 pt-5">+ Łączna wartość nagród rzeczowych w wyskości 5 000 zł.</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Eliminacje</h2>
