@@ -6,7 +6,7 @@ import links from '../data/links.json';
 import { validateForm } from "../functions/validateForm";
 
 const shirtSizes = ["S", "M", "L", "XL"];
-const date2007 = "2007-08-06";
+const date2010 = "2010-01-01";
 
 function Form() {
   const navigate = useNavigate();
@@ -219,7 +219,7 @@ function Form() {
                     Data urodzenia
                     <input
                       type="date"
-                      max={date2007}
+                      max={date2010}
                       name={`${tmNo}birthDate`}
                       required
                       className={`${commonStyle} py-1`}

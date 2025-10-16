@@ -1,7 +1,7 @@
 import { Filter } from "bad-words";
 
 const filter = new Filter();
-const date2007 = "2007-08-06";
+const date2010 = "2010-01-01";
 const shirtSizes = ["S", "M", "L", "XL"];
 const nameRegex = /^(?=.{1,30}$)[\p{L}]+(?:[ '-][\p{L}]+)*$/u;
 const teamNameRegex = /^[\p{L}0-9]{2,50}$/u;
@@ -84,8 +84,8 @@ export function validateForm(data) {
       return `Link Steam zawodnika ${i} jest niepoprawny.`;
     }
 
-    if (!member.birthDate || new Date(member.birthDate) > new Date(date2007) || isNaN(new Date(member.birthDate))) {
-      return `Zawodnik ${i} musi być urodzony przed ${date2007}.`;
+    if (!member.birthDate || new Date(member.birthDate) > new Date(date2010) || isNaN(new Date(member.birthDate))) {
+      return `Zawodnik ${i} musi być urodzony przed ${date2010}.`;
     }
 
     if (!shirtSizes.includes(member.shirtSize)) {
