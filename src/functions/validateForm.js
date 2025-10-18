@@ -68,10 +68,6 @@ export function validateForm(data) {
       return `Nazwisko zawodnika ${i} zawiera niedozwolone znaki.`;
     }
 
-    if (filter.isProfane(member.lastName)) {
-      return `Nazwisko zawodnika ${i} zawiera niedozwolone słowa.`;
-    }
-
     if (!/^https:\/\/steamcommunity\.com(\/(id|profiles)\/[A-Za-z0-9_-]+)?\/?$/.test(member.steam)) {
       return `Link Steam zawodnika ${i} jest niepoprawny.`;
     }
