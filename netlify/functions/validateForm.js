@@ -64,10 +64,6 @@ export function validateForm(data) {
       return `Imię zawodnika ${i} zawiera niedozwolone znaki.`;
     }
 
-    if (filter.isProfane(member.firstName)) {
-      return `Imię zawodnika ${i} zawiera niedozwolone słowa.`;
-    }
-
     if (!member.lastName || member.lastName.length < 2) {
       return `Nazwisko zawodnika ${i} jest wymagane.`;
     }

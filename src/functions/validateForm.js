@@ -17,10 +17,6 @@ export function validateForm(data) {
     return 'Imię lub nazwisko kapitana zawiera niedozwolone znaki.';
   }
 
-  if (filter.isProfane(data.team.captainName)) {
-    return 'Imię lub nazwisko kapitana zawiera niedozwolone słowa.';
-  }
-
   const tel = data.team.captainTel.replace(/\D/g, '');
   // Telefon
   if (!/^\d{9}$/.test(tel)) {
