@@ -8,6 +8,7 @@ import Home from './routes/Home';
 import Info from './routes/Info';
 import ThankYou from './routes/ThankYou';
 import Gdpr from './routes/Gdpr';
+import Plan from './routes/Plan';
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -22,7 +23,8 @@ createRoot(document.getElementById('root')).render(
     <Wrapper>
       <Routes>
         <Route element={<App />}>
-          <Route path="rejestracja" element={<Info />} />
+          <Route path="info" element={<Info />} />
+          <Route path="plan" element={<Plan />} />
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="gdpr" element={<Gdpr />} />
           <Route path="/" element={<Home />} />

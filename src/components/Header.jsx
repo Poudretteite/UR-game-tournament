@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import links from '../data/links.json';
 import assets from '../data/assets.json';
-import ShinyText from './ui/shadcn-io/shinyText/shiny-text';
 
 const Header = () => {
     return (
@@ -14,10 +13,13 @@ const Header = () => {
                 </Link>
             </div>
             <nav className="flex items-center">
-                <Link to="/rejestracja" className="items-center py-3 mb-5 md:py-5 px-5 text-2xl border border-white rounded shadow-[inset_1px_3px_6px_#ffffff55]" >
+                <Link to="/info" className="items-center text-center h-full py-3 mb-3 md:py-10 text-2xl px-3" >
                     <h3>Dla Uczestników</h3>
                 </Link>
-                <a href={links.Rules} target="_blank" rel="noopener noreferrer" className="items-center h-full py-3 mb-3 md:py-10 px-10 text-2xl" >
+                <Link to="/plan" className="items-center h-full py-3 mb-3 md:py-10 text-2xl px-2" >
+                    <h3>Drabinki</h3>
+                </Link>
+                <a href={links.Rules} target="_blank" rel="noopener noreferrer" className="items-center h-full py-3 mb-3 md:py-10 text-2xl px-3" >
                     Regulamin
                 </a>
             </nav>
