@@ -5,7 +5,7 @@ import { useLayoutEffect } from 'react';
 import './index.css'
 import App from './App.jsx'
 import Home from './routes/Home';
-import Form from './routes/Form';
+import Form_alt from './routes/Form_alt';
 import ThankYou from './routes/ThankYou';
 import Gdpr from './routes/Gdpr';
 
@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
     <Wrapper>
       <Routes>
         <Route element={<App />}>
-          <Route path="rejestracja" element={<Form />} />
+          <Route path="rejestracja" element={<Form_alt />} />
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="gdpr" element={<Gdpr />} />
           <Route path="/" element={<Home />} />
