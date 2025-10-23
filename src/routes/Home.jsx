@@ -23,8 +23,16 @@ const Home = () => {
                 <div className="flex flex-col py-10  md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <p className='text-6xl font-bold'>Ogólnopolski Turniej <br /> E-Sportowy</p>
                     <section>
-                        <h2 className={h2}>Zapisy</h2>
-                        <h3 className={h3}>13 - 22.10.2025</h3>
+                        <h2 className="text-4xl font-semibold text-[#0443cc] italic">Rejestracja dobiegła końca.</h2>
+                        <h3 className="text-2xl">Do zobaczenia na turnieju! Śledźcie nasze social media, żeby być na bieżąco z najnowszymi informacjami.</h3>
+                    </section>
+                    <section>
+                        <h2 className={h2}>Eliminacje</h2>
+                        <h3 className={h3}>24 - 31.10.2025</h3>
+                    </section>
+                    <section>
+                        <h2 className={h2}>Finał - LAN</h2>
+                        <h3 className={h3}>12 Listopada</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Nagrody</h2>
@@ -56,14 +64,6 @@ const Home = () => {
                             className="text-5xl font-semibold"
                         />&nbsp;ZŁ
                         <h3 className="text-2xl pb-2 pt-5">+ Łączna wartość nagród rzeczowych w wyskości 5 000 zł.</h3>
-                    </section>
-                    <section>
-                        <h2 className={h2}>Eliminacje</h2>
-                        <h3 className={h3}>24 - 31.10.2025</h3>
-                    </section>
-                    <section>
-                        <h2 className={h2}>Finał - LAN</h2>
-                        <h3 className={h3}>12 Listopada</h3>
                     </section>
                 </div>
                 </ElectricBorder>
