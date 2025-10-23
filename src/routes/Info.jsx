@@ -29,6 +29,12 @@ const Info = () => {
                             </ul>
                         </ul>
                     </section>
+                    <section>
+                        <h2 className={h2}>Drabinki</h2>
+                        <div className='flex justify-center'>
+                            <img src="./img/drabinki.png" alt="drabinki"/>
+                        </div>
+                    </section>
                     <section className={sec}>
                         <h2 className={h2}>Pula map</h2>
                         <ul className={ul}>
