@@ -16,7 +16,7 @@ const Plan = () => {
             className="-z-10"
             >
                 <div className="flex flex-col py-10  md:pt-32 items-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl mx-auto">
-                    <img src="./img/drabinki.png" alt="drabinki" className='w-auto md:w-[600px]' />
+                    <img src="./img/drabinki.png" alt="drabinki" className='w-auto md:w-[600px] py-10' />
                 </div>
                 </ElectricBorder>
             </main>
