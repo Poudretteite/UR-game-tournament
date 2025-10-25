@@ -9,7 +9,7 @@ const Footer = () => {
         <footer className="bg-[#0a1b3e]">
             <div className=" flex flex-wrap items-center justify-center gap-4 pt-5">
                 <a
-                    href="https://www.facebook.com/"
+                    href="https://www.facebook.com/events/1464955321456546"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center rounded-full shadow-md transition hover:scale-110"
