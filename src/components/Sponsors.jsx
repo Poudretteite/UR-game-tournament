@@ -28,6 +28,11 @@ const sponsorsData = {
       name: 'cityfit',
       img: '/img/logos/cityfit_logo.png',
       alt: 'CityFit',
+    },
+    {
+      name: 'samsung',
+      img: '/img/logos/samsung_logo.png',
+      alt: 'Samsung',
     }
   ],
   patrons: [
