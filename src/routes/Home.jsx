@@ -23,8 +23,8 @@ const Home = () => {
                 <div className="flex flex-col py-10  md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <p className='text-5xl md:text-6xl font-bold'>Ogólnopolski Turniej <br /> E-Sportowy</p>
                     <section>
-                        <h2 className="text-4xl font-semibold text-[#0443cc] italic">Rejestracja dobiegła końca.</h2>
-                        <h3 className="text-2xl">Do zobaczenia na turnieju! Śledźcie nasze social media, żeby być na bieżąco z najnowszymi informacjami.</h3>
+                        <h2 className="text-4xl font-semibold text-[#0443cc] italic">Eliminacje dobiegły końca.</h2>
+                        <h3 className="text-2xl">Zapraszamy na Finał podczas Podkarpackiego Festiwalu Nauki i Innowacji! Wydarzenie będzie można oglądać na żywo na miejscu lub online. Śledźcie nasze social media, żeby być na bieżąco z najnowszymi informacjami.</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Eliminacje</h2>
