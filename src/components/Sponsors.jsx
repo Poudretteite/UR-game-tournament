@@ -61,6 +61,10 @@ const Sponsors = () => {
             <img style={{ maxHeight: '130px', maxWidth: '200px' }} src={img} alt={alt} />
           </div>
         ))}
+          <div>
+            <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/actina_logo.png" alt="actina" /> <hr />
+            <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/amd_logo.png" alt="AMD" />
+          </div>
       </div>
       {/* <h4 className="my-10 text-4xl font-bold italic">Patroni</h4>
       <div className="flex flex-wrap gap-14 items-center justify-center ">
