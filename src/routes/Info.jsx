@@ -25,7 +25,6 @@ const Info = () => {
                             <ul className={inside_ul}>
                                 <li>2 grupy po 8 drużyn.</li>
                                 <li>Mecze do półfinałów - BO1, półfinały i finały - BO3.</li>
-                                <li>Przegrana jest jednoznaczna z eliminacją z turnieju.</li>
                             </ul>
                         </ul>
                     </section>
