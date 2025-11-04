@@ -6,7 +6,6 @@ const Plan = () => {
     return (
         <>
             <main className='max-w-4xl mx-auto tracking-widest text-white'>
-            <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block z-20 drop-shadow-[0_0_20px_#1952ffaa]" />
             <ElectricBorder
             color="#1952ff"
             speed={0.5}
@@ -19,6 +18,7 @@ const Plan = () => {
                     <img src="./img/drabinki.png" alt="drabinki" className='w-auto md:w-[600px] py-10' />
                 </div>
                 </ElectricBorder>
+                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 h-[6rem] md:h-[13rem] hidden md:block drop-shadow-[0_0_20px_#1952ff]" />
             </main>
         </>
     )
