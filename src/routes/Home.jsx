@@ -23,16 +23,9 @@ const Home = () => {
                 <div className="flex flex-col py-10  md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <p className='text-5xl md:text-6xl font-bold'>Ogólnopolski Turniej <br /> E-Sportowy</p>
                     <section>
-                        <h2 className="text-4xl font-semibold text-[#0443cc] italic">Eliminacje dobiegły końca.</h2>
-                        <h3 className="text-2xl">Zapraszamy na Finał podczas Podkarpackiego Festiwalu Nauki i Innowacji! Wydarzenie będzie można oglądać na żywo na miejscu lub online. Śledźcie nasze social media, żeby być na bieżąco z najnowszymi informacjami.</h3>
-                    </section>
-                    <section>
-                        <h2 className={h2}>Eliminacje</h2>
-                        <h3 className={h3}>24 - 31.10.2025</h3>
-                    </section>
-                    <section>
                         <h2 className={h2}>Finał - LAN</h2>
                         <h3 className={h3}>12 Listopada</h3>
+                        <h3 className={h3}>Zen.com Expo 8:00 - 16:00</h3>
                     </section>
                     <section>
                         <h2 className={h2}>Nagrody</h2>
