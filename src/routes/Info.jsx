@@ -30,7 +30,7 @@ const Info = () => {
                     </section>
                     <section className={sec}>
                         <h2 className={h2}>Harmonogram</h2>
-                        <ul className={ul}>
+                        <ul className='px-5 md:px-24 text-left space-y-1 list-none'>
                             <li><b>8:00 - 8:45</b> Rejestracja zawodników</li>
                             <li><b>9:00 - 9:30</b> Lewa strona drabinki - 1/8</li>
                             <li><b>9:45 - 10:15</b> Prawa strona drabinki - 1/8</li>
