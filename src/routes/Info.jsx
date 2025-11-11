@@ -29,6 +29,20 @@ const Info = () => {
                         </ul>
                     </section>
                     <section className={sec}>
+                        <h2 className={h2}>Harmonogram</h2>
+                        <ul className={ul}>
+                            <li><b>8:00 - 8:45</b> Rejestracja zawodników</li>
+                            <li><b>9:00 - 9:30</b> Lewa strona drabinki - 1/8</li>
+                            <li><b>9:45 - 10:15</b> Prawa strona drabinki - 1/8</li>
+                            <li><b>10:30 - 11:00</b> Ćwierćfinały</li>
+                            <li><b>11:15 - 11:45</b> Drabinka przegranych</li>
+                            <li><b>12:00 - 12:30</b> Ćwierćfinały przegranych</li>
+                            <li><b>12:45 - 14:15</b> BO3 półfinały </li>
+                            <li><b>14:30 - 16:00</b> BO3 Finały + 3, 4, 5 Miejsce</li>
+                            <li><b>16:00 - 16:30</b> Wręczenie nagród</li>
+                        </ul>
+                    </section>
+                    <section className={sec}>
                         <h2 className={h2}>Pula map</h2>
                         <ul className={ul}>
                             <li>Rooftop</li>
