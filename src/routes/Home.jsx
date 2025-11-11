@@ -20,7 +20,7 @@ const Home = () => {
             style={{ borderRadius: 16 }}
             className='z-auto'
             >
-                <div className="flex flex-col py-10 md:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
+                <div className="flex flex-col py-10 lg:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <p className='text-5xl md:text-6xl font-bold'>Ogólnopolski Turniej<br />E-Sportowy</p>
                     <section>
                         <h2 className={h2}>Finał - LAN</h2>
@@ -66,7 +66,7 @@ const Home = () => {
                     </section>
                 </div>
                 </ElectricBorder>
-                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 h-[6rem] md:h-[13rem] hidden md:block drop-shadow-[0_0_20px_#1952ff]" />
+                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden lg:block drop-shadow-[0_0_20px_#1952ff]" />
             </main>
             <Sponsors />
         </>

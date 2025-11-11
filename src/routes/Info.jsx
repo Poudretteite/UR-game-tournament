@@ -10,8 +10,8 @@ const Info = () => {
     return (
         <>
             <main className='max-w-4xl mx-auto'>
-                <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block z-20 drop-shadow-[0_0_20px_#1952ff]" />
-                    <div className='flex flex-col py-5 md:pt-32 pb-10 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl text-center text-lg shadow-[inset_2px_2px_15px_#1952ff]'>
+                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden lg:block drop-shadow-[0_0_20px_#1952ff]" />
+                    <div className='flex flex-col py-5 lg:pt-32 pb-10 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl text-center text-lg shadow-[inset_2px_2px_15px_#1952ff]'>
                     <h2 className="text-4xl font-semibold pt-3 text-white italic">Informacje o Turnieju.</h2>
                     <section className={sec}>
                         <h2 className={h2}>System rozgrywek</h2>
