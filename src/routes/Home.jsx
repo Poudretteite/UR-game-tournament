@@ -30,7 +30,7 @@ const Home = () => {
                             <br /><a href='https://infopack.pfni.pl' className='underline' target='blank'>PFNI Infopack</a>
                         </h3>
                     </section>
-                    <section className='outline-double outline-[#1952ffaa] outline-4 hidden'>
+                    <section className='outline-double outline-[#1952ffaa] outline-4'>
                         <TwitchEmbed />
                     </section>
                     <section>
