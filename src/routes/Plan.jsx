@@ -18,8 +18,12 @@ const Plan = () => {
             >
                 <div className="flex flex-col py-10 lg:pt-32 items-center p-6 bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl mx-auto">
                     <section className='md:p-10'>
-                        <h2 className={h2}>Drabinka rozgrywek</h2>
+                        <h2 className={h2}>Drabinka górna</h2>
                         <img src="./img/drabinki_gorne.png" alt="drabinki_gorne" />
+                    </section>
+                    <section className='md:p-10'>
+                        <h2 className={h2}>Drabinka przegranych</h2>
+                        <img src="./img/drabinki_dolne.png" alt="drabinki_dolnr" />
                     </section>
                 </div>
                 </ElectricBorder>
