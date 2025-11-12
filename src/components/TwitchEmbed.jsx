@@ -1,7 +1,7 @@
 
 const TwitchEmbed = () => {
   return <div className="grid grid-cols-1 gap-4 place-items-stretch" style={{ aspectRatio: '16 / 9' }} >
-    <iframe src="https://player.twitch.tv/?channel=slayproxx&parent=localhost" />
+    <iframe src="https://player.twitch.tv/?channel=urgamingtournament&parent=https://ur-game-tournament.netlify.app/" />
   </div>;
 }
 
