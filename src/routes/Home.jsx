@@ -25,7 +25,7 @@ const Home = () => {
                     <section>
                         <h2 className={h2}>Finał - LAN</h2>
                         <h3 className={h3}>12 Listopada</h3>
-                        <h3 className={h3}>Zen.com Expo 8:00 - 16:00</h3>
+                        <h3 className={h3}>Zen.com Expo 8:00 - 16:00 </h3>
                         <h3 className={h3}>Wszystkie informacje o festiwalu: 
                             <br /><a href='https://infopack.pfni.pl' className='underline' target='blank'>PFNI Infopack</a>
                         </h3>
