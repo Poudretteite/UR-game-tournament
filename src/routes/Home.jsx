@@ -25,11 +25,11 @@ const Home = () => {
                     <p className='text-5xl md:text-6xl font-bold'>Ogólnopolski Turniej<br />E-Sportowy</p>
                     <section>
                         <h2 className="text-5xl font-semibold text-[#0443cc] italic mb-5">Gratulujemy Zwycięstwa!</h2>
-                        <h3 className={h3}>1. HusariaMielec<br /><span className={span}>2500 zł</span></h3>
-                        <h3 className={h3}>2. DosHermanos<br /><span className={span}>1500 zł</span></h3>
-                        <h3 className={h3}>3. MyTuPoSiano<br /><span className={span}>1000 zł + Samsung Galaxy Watch 7</span></h3>
-                        <h3 className={h3}>4. Copacabanos<br /><span className={span}>zegarki Samsung Galaxy Watch 7 + Samsung Galaxy Fit 3</span></h3>
-                        <h3 className={h3}>5. GUDLAK<br /><span className={span}>zegarki Samsung Galaxy Watch 7 + Samsung Galaxy Fit 3</span></h3>
+                        <h3 className={h3}>1. HusariaMielec<br /><span className={span}>2500 zł + 2x Samsung Galaxy Watch 7</span></h3>
+                        <h3 className={h3}>2. DosHermanos<br /><span className={span}>1500 zł + 2x Samsung Galaxy Watch 7</span></h3>
+                        <h3 className={h3}>3. MyTuPoSiano<br /><span className={span}>1000 zł + Samsung Galaxy Watch 7 + Samsung Galaxy Fit 3</span></h3>
+                        <h3 className={h3}>4. Copacabanos<br /><span className={span}>2x zegarki Samsung Galaxy Fit 3</span></h3>
+                        <h3 className={h3}>5. GUDLAK<br /><span className={span}>2x zegarki Samsung Galaxy Fit 3</span></h3>
                     </section>
                 </div>
                 </ElectricBorder>
