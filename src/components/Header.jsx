@@ -13,8 +13,11 @@ const Header = () => {
                 </Link>
             </div>
             <nav className="flex items-center">
-                <Link to="/info" className="items-center text-center h-full py-3 mb-3 text-2xl px-3" >
+                {/* <Link to="/info" className="items-center text-center h-full py-3 mb-3 text-2xl px-3" >
                     <h3>Dla Uczestników</h3>
+                </Link> */}
+                <Link to="/gallery" className="items-center h-full py-3 mb-3 text-2xl px-2" >
+                    <h3>Zdjęcia</h3>
                 </Link>
                 <Link to="/plan" className="items-center h-full py-3 mb-3 text-2xl px-2" >
                     <h3>Drabinki</h3>

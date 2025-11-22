@@ -9,6 +9,7 @@ import Info from './routes/Info';
 import ThankYou from './routes/ThankYou';
 import Gdpr from './routes/Gdpr';
 import Plan from './routes/Plan';
+import Gallery from './routes/Gallery';
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="plan" element={<Plan />} />
           <Route path="thankyou" element={<ThankYou />} />
           <Route path="gdpr" element={<Gdpr />} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route> 
