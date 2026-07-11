@@ -5,3 +5,11 @@
 body {
   font-family: League Spartan;
 }
+
+.text-outline-white {
+  text-shadow:
+    -0.5px -0.5px 0 white,
+     0.5px -0.5px 0 white,
+    -0.5px  0.5px 0 white,
+     0.5px  0.5px 0 white;
+}

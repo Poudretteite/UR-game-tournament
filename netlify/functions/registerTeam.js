@@ -80,9 +80,10 @@ export async function handler(event) {
             `
         ).join('');
 
-        await transporter.sendMail({
+        await Promise.all([
+        transporter.sendMail({
             from: `"Rejestracja do turnieju" ${process.env.EMAIL_USER}`,
-            to: process.env.ORGANIZER_EMAIL1,
+            to: process.env.ORGANIZER_EMAIL,
             subject: `Nowa rejestracja: ${team.teamName}`,
             html: `
                 <h2>Drużyna: ${team.teamName}</h2>
@@ -92,23 +93,9 @@ export async function handler(event) {
                 <h3>Zawodnicy:</h3>
                 ${memberList}
             `,
-        });
+        }),
 
-        await transporter.sendMail({
-            from: `"Rejestracja do turnieju" ${process.env.EMAIL_USER}`,
-            to: process.env.ORGANIZER_EMAIL2,
-            subject: `Nowa rejestracja: ${team.teamName}`,
-            html: `
-                <h2>Drużyna: ${team.teamName}</h2>
-                <p><strong>Kapitan:</strong> ${team.captainName}</p>
-                <p><strong>Telefon:</strong> ${team.captainTel}</p>
-                <p><strong>Email:</strong> ${team.captainEmail}</p>
-                <h3>Zawodnicy:</h3>
-                ${memberList}
-            `,
-        });
-
-        await transporter.sendMail({
+        transporter.sendMail({
             from: `"Rejestracja do turnieju" ${process.env.EMAIL_USER}`,
             to: team.captainEmail,
             subject: `Dziekujemy za rejestrację: ${team.teamName}`,
@@ -120,7 +107,8 @@ export async function handler(event) {
                 <h3>Zawodnicy:</h3>
                 ${memberList}
             `,
-        });
+        })
+        ]);
 
         return { statusCode: 200, body: "Rejestracja zakończona sukcesem." };
 

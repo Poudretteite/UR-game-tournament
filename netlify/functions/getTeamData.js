@@ -22,13 +22,10 @@ const pool = new Pool({
 
   const client = await pool.connect();
   try {
-    const teams = await client.query(`
-      SELECT * FROM Teams ORDER BY id
-    `);
-
-    const players = await client.query(`
-      SELECT * FROM Players ORDER BY team_id, id
-    `);
+    const [teams, players] = await Promise.all([
+      client.query(`SELECT * FROM Teams ORDER BY id`),
+      client.query(`SELECT * FROM Players ORDER BY team_id, id`)
+    ]);
 
     const workbook = new ExcelJS.Workbook();
 

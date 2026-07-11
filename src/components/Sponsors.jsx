@@ -9,36 +9,6 @@ const sponsorsData = {
     },
   ],
   partners: [
-    {
-      name: 'pci',
-      img: '/img/logos/pci-logo.png',
-      alt: 'PCI',
-    },
-    {
-      name: 'bank_pekao',
-      img: '/img/logos/pekao_logo.png',
-      alt: 'Bank Pekao',
-    },
-    {
-      name: 'uniperks',
-      img: '/img/logos/uniperks_logo.png',
-      alt: 'Uniperks',
-    },
-    {
-      name: 'cityfit',
-      img: '/img/logos/cityfit_logo.png',
-      alt: 'CityFit',
-    },
-    {
-      name: 'samsung',
-      img: '/img/logos/samsung_logo.png',
-      alt: 'Samsung',
-    }
-  ],
-  patrons: [
-    
-  ],
-  media_patron: [
     
   ],
 };
@@ -54,6 +24,31 @@ const Sponsors = () => {
           </div>
         ))}
       </div>
+      {/*organizacyjny*/}
+      <div className="flex flex-row items-center justify-center text-center p-5 m-5">
+        <div className="flex flex-col items-center justify-center">
+         <h4 className="my-8 text-4xl font-semibold italic m-5">Partner organizacyjny</h4>
+          <div key="PCI">
+            <img style={{ maxHeight: '130px', maxWidth: '200px' }} src="/img/logos/pci-logo.png" alt="PCI" />
+          </div>
+        </div>
+        {/*tytularny*/}
+        {/* <div>
+         <h4 className="my-8 text-4xl font-semibold italic m-5">Partner tytularny</h4> 
+        </div> */}
+        {/*strategiczny*/}
+        {/* <div>
+         <h4 className="my-8 text-4xl font-semibold italic m-5">Partner strategiczny</h4> 
+        </div> */}
+        {/*rzeczowy*/}
+        {/* <div>
+         <h4 className="my-8 text-4xl font-semibold italic m-5">Partner rzeczowy</h4> 
+        </div> */}
+        {/*technologiczny*/}
+        {/* <div>
+         <h4 className="my-8 text-4xl font-semibold italic m-5">Partner technologiczny</h4> 
+        </div> */}
+      </div>
       <h4 className="my-8 text-4xl font-semibold italic">Partnerzy</h4>
       <div className="flex flex-wrap gap-14 items-center justify-center ">
         {sponsorsData.partners.map(({ name, img, alt }) => (
@@ -61,10 +56,7 @@ const Sponsors = () => {
             <img style={{ maxHeight: '130px', maxWidth: '200px' }} src={img} alt={alt} />
           </div>
         ))}
-          <div>
-            <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/actina_logo.png" alt="actina" /> <hr />
-            <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/amd_logo.png" alt="AMD" />
-          </div>
+
       </div>
       {/* <h4 className="my-10 text-4xl font-bold italic">Patroni</h4>
       <div className="flex flex-wrap gap-14 items-center justify-center ">

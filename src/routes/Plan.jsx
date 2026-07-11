@@ -27,7 +27,7 @@ const Plan = () => {
                     </section>
                 </div>
                 </ElectricBorder>
-                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden lg:block drop-shadow-[0_0_20px_#1952ff]" />
+                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[1250px]:block drop-shadow-[0_0_20px_#1952ff]" />
             </main>
         </>
     )

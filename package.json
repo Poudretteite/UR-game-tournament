@@ -30,7 +30,7 @@
     "jszip": "^3.10.1",
     "lucide-react": "^0.542.0",
     "motion": "^12.23.12",
-    "nodemailer": "^7.0.6",
+    "nodemailer": "^9.0.3",
     "papaparse": "^5.5.3",
     "pg": "^8.16.3",
     "postprocessing": "^6.37.7",

@@ -1,8 +1,8 @@
 {
-    "logo": "./img/urgtlogo_white.svg",
-    "logo_text": "./img/urgtlogo_black.png",
+    "logo": "./img/logo_gamex_x.svg",
+    "logo_text": "./img/logo_gamex_full.svg",
     "icon": "/img/favicon.png",
-    "name": "UR Gaming ToURnament",
+    "name": "Gamex Tournament",
     "color": "gray",
     "IOD_email": "iod@ur.edu.pl",
     "IOD_phone": "+48 605 509 000",
