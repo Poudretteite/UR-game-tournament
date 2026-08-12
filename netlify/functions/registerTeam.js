@@ -83,7 +83,7 @@ export async function handler(event) {
         await Promise.all([
         transporter.sendMail({
             from: `"Rejestracja do turnieju" ${process.env.EMAIL_USER}`,
-            to: process.env.VITE_ORGANIZER_EMAIL,
+            to: process.env.ORGANIZER_EMAIL,
             subject: `Nowa rejestracja: ${team.teamName}`,
             html: `
                 <h2>Drużyna: ${team.teamName}</h2>
