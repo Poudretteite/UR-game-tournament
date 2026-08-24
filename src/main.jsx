@@ -28,7 +28,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<App />}>
           <Route path="info" element={<Info />} />
-          {/*<Route path="form" element={<Form />} />*/}
+          <Route path="rejestracja" element={<Form />} />
           {/*<Route path="form" element={<Form_alt />} />*/}
           {/*<Route path="plan" element={<Plan />} />*/}
           <Route path="thankyou" element={<ThankYou />} />

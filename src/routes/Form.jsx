@@ -19,7 +19,7 @@ function Form() {
     const rawData = Object.fromEntries(formData.entries());
 
     const members = [];
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 6; i++) {
       const prefix = `teamMember${i}`;
       const firstName = rawData[`${prefix}Name`]?.trim() || '';
       const lastName  = rawData[`${prefix}LastName`]?.trim() || '';
@@ -81,8 +81,8 @@ function Form() {
 
   return (
     <main className="max-w-4xl mx-auto text-white">
-      <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block drop-shadow-[0_0_20px_#1952ff]" />
-      <form onSubmit={handleSubmit} className="flex flex-col py-10 md:pt-32 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#1952ff]">
+      <img src={assets.logo_text} alt="logo" className="absolute top-16 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[800px]:block drop-shadow-[0_0_20px_#022db0]" />
+      <form onSubmit={handleSubmit} className="flex flex-col py-10 md:pt-44 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#1952ff]">
       <h1 className="text-5xl font-bold text-center text-white mb-6 pt-3">REJESTRACJA</h1>
         <input type="hidden" name="form-name" value="contact" />
 
@@ -156,19 +156,21 @@ function Form() {
 
         {/* Zawodnicy */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {Array(2)
+          {Array(6)
             .fill(0)
             .map((_, i) => {
               const tmNo = `teamMember${i + 1}`;
+              const isReserve = i === 5;
 
 
               return (
                 <div key={i} className="p-5 pt-10">
                   <h3 className="text-3xl h-16 font-semibold">
-                  {
-                    i != 0
-                      ? `Zawodnik ${i + 1}`
-                      : `Zawodnik ${i + 1} - Kapitan`
+                  {i === 0
+                  ? `Zawodnik ${i + 1} - Kapitan`
+                  : i === 5
+                    ? `Zawodnik ${i + 1} - Rezerwowy (opcjonalny)`
+                    : `Zawodnik ${i + 1}`
                   }
                   </h3>
 
@@ -181,7 +183,7 @@ function Form() {
                       minlength="2"
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
                       onChange={(e) => e.target.setCustomValidity('')}
-                      required
+                      required={!isReserve}
                       className={commonStyle}
                     />
                   </label>
@@ -195,7 +197,7 @@ function Form() {
                       minlength="2"
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać co najmniej 2 znaki.')}
                       onChange={(e) => e.target.setCustomValidity('')}
-                      required
+                      required={!isReserve}
                       className={commonStyle}
                     />
                   </label>
@@ -208,7 +210,7 @@ function Form() {
                       placeholder="Link"
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać link do profilu Steam.')}
                       onChange={(e) => e.target.setCustomValidity('')}
-                      required
+                      required={!isReserve}
                       className={commonStyle}
                       pattern="^https://steamcommunity\.com(/.*)?$"
                       title="Link musi być w formacie https://steamcommunity.com/profiles/7656119XXXXXXXXXX/"
@@ -221,7 +223,7 @@ function Form() {
                       type="date"
                       max={date2010}
                       name={`${tmNo}birthDate`}
-                      required
+                      required={!isReserve}
                       className={`${commonStyle} py-1`}
                     />
                   </label>
@@ -230,10 +232,11 @@ function Form() {
                     Rozmiar koszulki
                     <select
                       name={`${tmNo}shirtSize`}
-                      defaultValue="M"
-                      required
+                      defaultValue={isReserve ? "" : "M"}
+                      required={!isReserve}
                       className={`${commonStyle} mt-1`}
                     >
+                      {isReserve && <option value="">—</option>}
                       {shirtSizes.map((size) => (
                         <option key={size} value={size}>
                           {size}

@@ -16,7 +16,7 @@ const Plan = () => {
             style={{ borderRadius: 16 }}
             className="-z-10"
             >
-                <div className="flex flex-col py-10 lg:pt-32 items-center p-6 bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl mx-auto">
+                <div className="flex flex-col py-10 lg:pt-44 items-center p-6 bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl mx-auto">
                     <section className='md:p-10'>
                         <h2 className={h2}>Drabinka górna</h2>
                         <img src="./img/drabinki_gorne.png" alt="drabinki_gorne" />
@@ -27,7 +27,7 @@ const Plan = () => {
                     </section>
                 </div>
                 </ElectricBorder>
-                <img src={assets.logo_text} alt="logo" className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[1250px]:block drop-shadow-[0_0_20px_#1952ff]" />
+                <img src={assets.logo_text} alt="logo" className="absolute top-16 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[800px]:block drop-shadow-[0_0_20px_#022db0]" />
             </main>
         </>
     )

@@ -4,10 +4,10 @@ import assets from '../data/assets.json';
 const Gdpr = () => {
  return (
         <main className='max-w-4xl mx-auto tracking-widest text-white'>
-        <img src={assets.logo_text} alt="logo" className="-mt-28 -mb-28 h-[6rem] md:h-[13rem] mx-auto hidden md:block z-20 drop-shadow-[0_0_20px_#1952ff]" />
-        <div className='flex flex-col py-10 md:pt-32 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#1952ff]'>
+        <img src={assets.logo_text} alt="logo" className="absolute top-16 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[800px]:block drop-shadow-[0_0_20px_#022db0]" />
+        <div className='flex flex-col py-10 md:pt-44 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#1952ff]'>
             <div className='text-4xl text-center font-extrabold italic'>
-                <h1 className="py-10">KLAUZULA INFORMACYJNA DOTYCZĄCA OCHRONY DANYCH OSOBOWYCH</h1>
+                <h1 className="py-2">KLAUZULA INFORMACYJNA DOTYCZĄCA OCHRONY DANYCH OSOBOWYCH</h1>
             </div>
             <p className=''>
                 <p className='font-semibold'>Poniżej znajdziesz wszelkie niezbędne informacje dotyczące przetwarzania Twoich danych osobowych w związku z rejestracją na Turniej E-sportowy „{assets.name}” organizowany przez Uniwersytet Rzeszowski.</p>

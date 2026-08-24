@@ -25,7 +25,7 @@ const Home = () => {
             style={{ borderRadius: 16 }}
             className='z-auto'
             >
-                <div className="flex flex-col py-10 min-[1250px]:pt-32 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
+                <div className="flex flex-col py-10 min-[800px]:pt-44 text-center space-y-6 p-6 h-a bg-black shadow-lg shadow-gray-700/50 bg-opacity-30 rounded-2xl">
                     <p className='text-5xl md:text-6xl font-bold'>ogólnopolski turniej e-sportowy Counter-Strike 2</p>
                     <section className='text-xl font-thin'>
                         GameX ToURnament to ogólnopolski turniej e-sportowy organizowany przez Samorząd Studentów Uniwersytetu Rzeszowskiego. Wydarzenie skierowane jest do wszystkich 
@@ -89,7 +89,7 @@ const Home = () => {
                 <img 
                     src={assets.logo_text} 
                     alt="logo" 
-                    className="absolute top-3 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[1250px]:block drop-shadow-[0_0_20px_#022db0]" />
+                    className="absolute top-16 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[800px]:block drop-shadow-[0_0_20px_#022db0]" />
             </main>
             <Sponsors />
         </>
