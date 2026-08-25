@@ -21,7 +21,7 @@ const Header = () => {
                 </Link>
             </div>
             
-            <nav className="flex w-full min-[800px]:w-auto justify-between min-[800px]:flex-1 h-20 h-full text-2xl">
+            <nav className="flex w-full min-[800px]:w-auto justify-between min-[800px]:flex-1 min-[800px]:-mt-10 h-20 h-full text-2xl">
                 {/* <Link to="/info" className=" py-3 mb-3 px-3" >
                     <h3>Dla Uczestników</h3>
                 </Link> 
