@@ -7,7 +7,7 @@ const Contact = () => {
     return (
         <>  
             <main className='max-w-4xl mx-auto'>
-                <div className='flex flex-col w-full py-10 min-[1250px]:pt-48 pt-20 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl text-center text-lg shadow-[inset_2px_2px_15px_#1952ff] text-white'>
+                <div className='flex flex-col py-10 md:pt-44 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl text-center text-lg shadow-[inset_2px_2px_15px_#1952ff] text-white'>
                     <div className='flex flex-col'>
                         <h2 className="text-5xl font-bold text-[#1952ff]">Tomasz Knapik</h2>
                         <h3 className="text-xl font-semibold italic">Koordynator główny GAMEX TOURNAMENT</h3>

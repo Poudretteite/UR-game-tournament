@@ -46,7 +46,7 @@ const Gallery = () => {
     return (
         <>
             <main className='max-w-4xl mx-auto'>
-                    <div className='flex flex-col py-5 min-[1250px]:pt-44 pt-10 pb-10 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl text-center text-lg shadow-[inset_2px_2px_15px_#1952ff] text-white'>
+                    <div className='flex flex-col py-10 md:pt-44 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl text-center text-lg shadow-[inset_2px_2px_15px_#1952ff] text-white'>
                     <div>
                         <h2 className='text-4xl md:text-6xl font-semibold text-center pb-5'>UR Gaming Tournament 2025</h2>
                         <div>

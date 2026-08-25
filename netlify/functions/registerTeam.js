@@ -3,11 +3,20 @@ import { validateForm } from "./validateForm.js";
 import { rateLimit } from "./rateLimit.js";
 import nodemailer from 'nodemailer';
 
-
 const pool = new Pool({
     connectionString: process.env.NETLIFY_DATABASE_URL,
     ssl: { rejectUnauthorized: false }
 });
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
 export async function handler(event) {
     const ip = event.headers['x-forwarded-for'] || event.ip || 'unknown';
@@ -32,8 +41,9 @@ export async function handler(event) {
     }
     
     const { team, members } = data;
-
     const client = await pool.connect();
+    let memberNum = 1;
+
     try {
         await client.query("BEGIN");
 
@@ -47,71 +57,20 @@ export async function handler(event) {
         const realMembers = members.filter(m =>
             m.firstName || m.lastName || m.steam
         );
-        let memberNum = 1;
 
-        for (const member of realMembers) {
-            const { firstName, lastName, steam, faceit, birthDate, shirtSize } = member;
+        for (let i = 0; i < realMembers.length; i++) {
+            memberNum = i + 1; 
+            const member = realMembers[i];
+            const { firstName, lastName, steam, birthDate, shirtSize } = member;
+
             await client.query(
                 `INSERT INTO Players (Name, Surname, Steam, birthDate, ShirtSize, Team_id) 
                  VALUES ($1, $2, $3, $4, $5, $6)`,
                 [firstName, lastName, steam, birthDate, shirtSize, teamId]
             );
-            memberNum++;
         }
 
         await client.query("COMMIT");
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-
-        const memberList = realMembers.map(
-            (m, i) => `
-                <p>
-                    <strong>Zawodnik ${i + 1}:</strong><br>
-                    Imię: ${m.firstName} ${m.lastName}<br>
-                    Steam: <a href="${m.steam}">${m.steam}</a><br>
-                    Data urodzenia: ${m.birthDate}<br>
-                </p>
-            `
-        ).join('');
-
-        await Promise.all([
-        transporter.sendMail({
-            from: `"Rejestracja do turnieju" ${process.env.EMAIL_USER}`,
-            to: process.env.ORGANIZER_EMAIL,
-            subject: `Nowa rejestracja: ${team.teamName}`,
-            html: `
-                <h2>Drużyna: ${team.teamName}</h2>
-                <p><strong>Kapitan:</strong> ${team.captainName}</p>
-                <p><strong>Telefon:</strong> ${team.captainTel}</p>
-                <p><strong>Email:</strong> ${team.captainEmail}</p>
-                <h3>Zawodnicy:</h3>
-                ${memberList}
-            `,
-        }),
-
-        transporter.sendMail({
-            from: `"Rejestracja do turnieju" ${process.env.EMAIL_USER}`,
-            to: team.captainEmail,
-            subject: `Dziekujemy za rejestrację: ${team.teamName}`,
-            html: `
-                <h2>Drużyna: ${team.teamName}</h2>
-                <p><strong>Kapitan:</strong> ${team.captainName}</p>
-                <p><strong>Telefon:</strong> ${team.captainTel}</p>
-                <p><strong>Email:</strong> ${team.captainEmail}</p>
-                <h3>Zawodnicy:</h3>
-                ${memberList}
-            `,
-        })
-        ]);
-
-        return { statusCode: 200, body: "Rejestracja zakończona sukcesem." };
-
     } catch (err) {
         await client.query("ROLLBACK");
 
@@ -133,4 +92,55 @@ export async function handler(event) {
     } finally {
         client.release();
     }
+
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
+
+        const realMembers = members.filter(m => m.firstName || m.lastName || m.steam);
+        const memberList = realMembers.map(
+            (m, i) => `
+                <p>
+                    <strong>Zawodnik ${i + 1}:</strong><br>
+                    Imię: ${escapeHtml(m.firstName)} ${escapeHtml(m.lastName)}<br>
+                    Steam: <a href="${escapeHtml(m.steam)}">${escapeHtml(m.steam)}</a><br>
+                    Data urodzenia: ${escapeHtml(m.birthDate)}<br>
+                </p>
+            `
+        ).join('');
+
+        const htmlContent = `
+            <h2>Drużyna: ${escapeHtml(team.teamName)}</h2>
+            <p><strong>Kapitan:</strong> ${escapeHtml(team.captainName)}</p>
+            <p><strong>Telefon:</strong> ${escapeHtml(team.captainTel)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(team.captainEmail)}</p>
+            <h3>Zawodnicy:</h3>
+            ${memberList}
+        `;
+
+        await Promise.all([
+            transporter.sendMail({
+                from: `"Rejestracja do turnieju" <${process.env.EMAIL_USER}>`,
+                to: process.env.ORGANIZER_EMAIL,
+                subject: `Nowa rejestracja: ${team.teamName}`,
+                html: htmlContent,
+            }),
+            transporter.sendMail({
+                from: `"Rejestracja do turnieju" <${process.env.EMAIL_USER}>`,
+                to: team.captainEmail,
+                subject: `Dziękujemy za rejestrację: ${team.teamName}`,
+                html: htmlContent,
+            })
+        ]);
+    } catch (emailErr) {
+        console.error("Błąd podczas wysyłania e-maila:", emailErr);
+        return { statusCode: 200, body: "Rejestracja udana, ale wystąpił problem z wysłaniem e-maila." };
+    }
+
+    return { statusCode: 200, body: "Rejestracja zakończona sukcesem." };
 }
