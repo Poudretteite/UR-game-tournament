@@ -35,7 +35,7 @@ const Home = () => {
                     </section>
                     <p className={title}>Harmonogram</p>
                     <section className='pl-10 text-4xl'>
-                        <p><span className='font-bold'>17 sierpnia – 13 września</span> <br /> <span className='font-thin'>zapisy drużyn,</span></p>
+                        <p><span className='font-bold'>25 sierpnia – 13 września</span> <br /> <span className='font-thin'>zapisy drużyn,</span></p>
                         <p><span className='font-bold'>21 września – 30 października</span> <br /> <span className='font-thin'>eliminacje online,</span></p>
                         <p><span className='font-bold'>20–21 listopada</span> <br /> <span className='font-thin'>ćwierćfinały oraz wielki finał turnieju.</span></p>
                     </section>
