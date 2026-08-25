@@ -27,7 +27,7 @@ const Sponsors = () => {
       {/*organizacyjny*/}
       <div className="flex flex-row items-center justify-center text-center p-5 m-5">
         <div className="flex flex-col items-center justify-center">
-         <h4 className="my-8 text-4xl font-semibold italic m-5">Partner organizacyjny</h4>
+         <h4 className="my-8 text-4xl font-semibold italic m-5">Współorganizator</h4>
           <div key="PCI">
             <img style={{ maxHeight: '130px', maxWidth: '200px' }} src="/img/logos/pci-logo.png" alt="PCI" />
           </div>
