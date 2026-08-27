@@ -21,12 +21,6 @@ function Form() {
     const formData = new FormData(e.target);
     const rawData = Object.fromEntries(formData.entries());
 
-    // Ochrona przed botami (honeypot)
-    if (rawData.hp_field) {
-      navigate("/thankyou");
-      return;
-    }
-
     const members = [];
     for (let i = 1; i <= 6; i++) {
       const prefix = `teamMember${i}`;
@@ -56,8 +50,7 @@ function Form() {
       agreements: {
         rulesAccepted: formData.get("rulesAccepted") === 'on',
         gdprAccepted: formData.get("gdprAccepted") === 'on'
-      },
-      hp_field: rawData.hp_field || ''
+      }
     };
 
     const validationError = validateForm(data);
@@ -97,15 +90,6 @@ function Form() {
       <img src={assets.logo_text} alt="logo" className="absolute top-16 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[800px]:block drop-shadow-[0_0_20px_#022db0]" />
       <form onSubmit={handleSubmit} className="flex flex-col py-10 md:pt-44 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#1952ff]">
       <h1 className="text-5xl font-bold text-center text-white mb-6 pt-3">REJESTRACJA</h1>
-        {/* Niewidoczne pole honeypot chroniące przed spamem botów (BEZ-03, PRA-23) */}
-        <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
-          <input
-            type="text"
-            name="hp_field"
-            tabIndex="-1"
-            autoComplete="off"
-          />
-        </div>
 
         {/* Kapitan */}
         <div>

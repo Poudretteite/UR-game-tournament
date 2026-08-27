@@ -47,11 +47,6 @@ export async function handler(event) {
         return { statusCode: 400, body: "Niepoprawny format danych JSON." };
     }
 
-    // Ochrona przed botami (honeypot)
-    if (data.hp_field) {
-        return { statusCode: 200, body: "Rejestracja zakończona sukcesem." };
-    }
-
     const validationError = validateForm(data);
     if (validationError) {
         return { statusCode: 400, body: validationError };
