@@ -1,6 +1,5 @@
 import * as React from 'react';
 import assets from '../data/assets.json';
-import links from '../data/links.json';
 
 const ThankYou = () => {
     return (

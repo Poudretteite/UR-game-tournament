@@ -42,7 +42,6 @@ const sponsorsData = [{
 ];
 
 const Gallery = () => {
-    console.log(galleryPhotos);
     return (
         <>
             <main className='max-w-4xl mx-auto'>
@@ -59,17 +58,17 @@ const Gallery = () => {
                         </div>
                         <section className='md:p-10'>
                             <h3 className={h3}>Drabinka górna</h3>
-                            <img src="./img/drabinki_gorne.png" alt="drabinki_gorne" />
+                            <img src="./img/drabinki_gorne.png" alt="Drabinka górna turnieju" loading="lazy" decoding="async" />
                         </section>
                         <section className='md:p-10'>
                             <h3 className={h3}>Drabinka przegranych</h3>
-                            <img src="./img/drabinki_dolne.png" alt="drabinki_dolne" />
+                            <img src="./img/drabinki_dolne.png" alt="Drabinka przegranych turnieju" loading="lazy" decoding="async" />
                         </section>
                         <div>
                             <h2 className={h2}>Galeria zdjęć</h2>
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 {Object.values(galleryPhotos).map((img, i) => (
-                                    <img className='border-double border-[#1952ff] border-4' key={i} src={img.default} alt={`photo-${i}`} />
+                                    <img className='border-double border-[#1952ff] border-4' key={i} src={img.default} alt={`Zdjęcie z turnieju ${i + 1}`} loading="lazy" decoding="async" />
                                 ))}
                             </div> 
                         </div>
@@ -78,12 +77,12 @@ const Gallery = () => {
                             <div className="flex flex-wrap gap-14 items-center justify-center ">
                                 {sponsorsData.map(({ name, img, alt }) => (
                                 <div key={name}>
-                                    <img style={{ maxHeight: '130px', maxWidth: '200px' }} src={img} alt={alt} />
+                                    <img style={{ maxHeight: '130px', maxWidth: '200px' }} src={img} alt={alt} loading="lazy" decoding="async" />
                                 </div>
                             ))}
                             <div>
-                                <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/actina_logo.png" alt="actina" /> <hr />
-                                <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/amd_logo.png" alt="AMD" />
+                                <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/actina_logo.png" alt="Actina" loading="lazy" decoding="async" /> <hr />
+                                <img style={{ maxHeight: '140px', maxWidth: '200px', margin: '2px'}} src="/img/logos/amd_logo.png" alt="AMD" loading="lazy" decoding="async" />
                             </div>
                             </div>
                         </div>

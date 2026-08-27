@@ -9,7 +9,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'Nunito Sans"',
+  				'Nunito Sans',
   				'sans-serif'
   			]
   		},

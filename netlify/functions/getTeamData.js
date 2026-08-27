@@ -1,21 +1,49 @@
 import { Pool } from "pg";
 import ExcelJS from "exceljs";
+import crypto from "crypto";
+import { rateLimit } from "./rateLimit.js";
 
 const pool = new Pool({
-    connectionString: process.env.NETLIFY_DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
-  });
+  connectionString: process.env.NETLIFY_DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
 
-  export async function handler(event) {
-  const token = event.headers['x-admin-token'];
-
+export async function handler(event) {
   if (event.httpMethod !== "GET") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  if (token !== process.env.ADMIN_API_KEY) {
+  const rawIp = event.headers['x-forwarded-for'] || event.headers['X-Forwarded-For'] || event.ip || 'unknown';
+  const ip = rawIp.split(',')[0].trim();
+
+  // Ochrona przed atakami brute-force na klucz administratora (maksymalnie 5 prób na minutę)
+  if (rateLimit(ip, 5, 60 * 1000)) {
+    return {
+      statusCode: 429,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ success: false, message: "Zbyt wiele prób. Spróbuj ponownie później." })
+    };
+  }
+
+  const token = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
+  const expectedKey = process.env.ADMIN_API_KEY;
+
+  // Bezwzględna blokada: klucz musi być zdefiniowany na serwerze i przekazany w nagłówku
+  if (!expectedKey || !token || typeof token !== 'string') {
     return {
       statusCode: 401,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ success: false, message: "Unauthorized" })
+    };
+  }
+
+  // Bezpieczne porównanie odporne na timing attack
+  const tokenBuf = Buffer.from(token);
+  const keyBuf = Buffer.from(expectedKey);
+  if (tokenBuf.length !== keyBuf.length || !crypto.timingSafeEqual(tokenBuf, keyBuf)) {
+    return {
+      statusCode: 401,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ success: false, message: "Unauthorized" })
     };
   }
@@ -65,8 +93,12 @@ const pool = new Pool({
     };
 
   } catch (err) {
-    console.error("Błąd:", err);
-    return { statusCode: 500, body: err.message };
+    console.error("Błąd podczas generowania raportu zespołów:", err);
+    return {
+      statusCode: 500,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ success: false, message: "Wewnętrzny błąd serwera." })
+    };
   } finally {
     client.release();
   }

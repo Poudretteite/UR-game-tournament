@@ -1,7 +1,22 @@
 import { Filter } from "bad-words";
 
 const filter = new Filter();
-const date2010 = "2010-01-01";
+
+export function getMaxBirthDate() {
+  const today = new Date();
+  const d = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  return d.toISOString().split('T')[0];
+}
+
+export function isAtLeast18(birthDateStr) {
+  if (!birthDateStr) return false;
+  const birthDate = new Date(birthDateStr);
+  if (isNaN(birthDate.getTime())) return false;
+  const today = new Date();
+  const minDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  return birthDate <= minDate;
+}
+
 const shirtSizes = ["S", "M", "L", "XL"];
 const nameRegex = /^(?=.{1,30}$)[\p{L}]+(?:[ '-][\p{L}]+)*$/u;
 const teamNameRegex = /^[\p{L}0-9\s]{2,50}$/u;
@@ -77,8 +92,8 @@ export function validateForm(data) {
       return `Link Steam zawodnika ${i} jest niepoprawny.`;
     }
 
-    if (!member.birthDate || new Date(member.birthDate) > new Date(date2010) || isNaN(new Date(member.birthDate))) {
-      return `Zawodnik ${i} musi być urodzony przed ${date2010}.`;
+    if (!member.birthDate || !isAtLeast18(member.birthDate)) {
+      return `Zawodnik ${i} musi mieć ukończone 18 lat.`;
     }
 
     if (!shirtSizes.includes(member.shirtSize)) {

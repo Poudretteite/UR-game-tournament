@@ -10,12 +10,12 @@ function App() {
     <>
     <div className="flex flex-col min-h-screen bg-[#07102c] z-10 overflow-hidden">
       <Header/>
-      <main className="flex-grow z-20">
+      <div className="flex-grow z-20">
         <Outlet/>
-      </main>
+      </div>
       <Footer />
     </div>
-    <Particles className="fixed inset-0 flex items-center justify-center text-white===== z-10"/>
+    <Particles className="fixed inset-0 flex items-center justify-center text-white z-10"/>
     <RetroGrid className="fixed inset-0 flex items-center justify-center z-10"/>
     </>
   )

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import assets from '../data/assets.json';
-import { BsTelephoneFill } from "react-icons/bs";
 import { BsEnvelopeAt } from "react-icons/bs";
 
 const Contact = () => {
@@ -12,21 +11,18 @@ const Contact = () => {
                         <h2 className="text-5xl font-bold text-[#1952ff]">Tomasz Knapik</h2>
                         <h3 className="text-xl font-semibold italic">Koordynator główny GAMEX TOURNAMENT</h3>
                         <div className="flex flex-col items-center py-5">
-                            <div className="flex items-center gap-5">
-                                <BsTelephoneFill /> 880 398 501</div>
-                            <div className="flex items-center gap-5">
-                                <BsEnvelopeAt /> tomasz.knapik@urz.pl</div>
+                            <a href="mailto:tomasz.knapik@urz.pl" className="flex items-center gap-3 hover:text-blue-400 transition-colors text-xl">
+                                <BsEnvelopeAt className="text-2xl" /> tomasz.knapik@urz.pl
+                            </a>
                         </div>
                     </div>
                     <div>
                         <h2 className="text-5xl font-bold text-[#1952ff]">Dominika Dymon</h2>
                         <h3 className="text-xl font-semibold italic">Koordynator ds. Kontaktów Zewnętrznych</h3>
                         <div className="flex flex-col items-center py-5">
-                            <div className="flex items-center gap-5">
-                                <BsTelephoneFill /> 602 401 216
-                            </div>
-                            <div className="flex items-center gap-5">
-                                <BsEnvelopeAt /> dominika.dymon@urz.pl</div>
+                            <a href="mailto:dominika.dymon@urz.pl" className="flex items-center gap-3 hover:text-blue-400 transition-colors text-xl">
+                                <BsEnvelopeAt className="text-2xl" /> dominika.dymon@urz.pl
+                            </a>
                         </div>
                     </div>
                 </div>

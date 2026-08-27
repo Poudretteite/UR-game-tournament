@@ -3,20 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import assets from '../data/assets.json';
 import Button from '../components/Button';
 import links from '../data/links.json';
-import { validateForm } from "../functions/validateForm";
+import { validateForm, getMaxBirthDate } from "../functions/validateForm";
 
 const shirtSizes = ["S", "M", "L", "XL"];
-const date2010 = "2010-01-01";
+const maxBirthDate = getMaxBirthDate();
 
 function Form() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setError('');
+
     const formData = new FormData(e.target);
     const rawData = Object.fromEntries(formData.entries());
+
+    // Ochrona przed botami (honeypot)
+    if (rawData.hp_field) {
+      navigate("/thankyou");
+      return;
+    }
 
     const members = [];
     for (let i = 1; i <= 6; i++) {
@@ -38,23 +47,26 @@ function Form() {
 
     const data = {
       team: {
-        captainName: rawData.name.trim(),
-        captainTel: rawData.telephone.trim(),
-        captainEmail: rawData.email.trim(),
-        teamName: rawData.teamName.trim()
+        captainName: rawData.name?.trim() || '',
+        captainTel: rawData.telephone?.trim() || '',
+        captainEmail: rawData.email?.trim() || '',
+        teamName: rawData.teamName?.trim() || ''
       },
       members,
       agreements: {
         rulesAccepted: formData.get("rulesAccepted") === 'on',
         gdprAccepted: formData.get("gdprAccepted") === 'on'
-      }
-    }
+      },
+      hp_field: rawData.hp_field || ''
+    };
 
     const validationError = validateForm(data);
     if (validationError) {
       setError(validationError);
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       const res = await fetch("/.netlify/functions/registerTeam", {
@@ -66,13 +78,14 @@ function Form() {
       const text = await res.text(); 
   
       if (!res.ok) {
-        throw new Error(text || "Błąd serwera!");
+        throw new Error(text || "Wystąpił problem z rejestracją.");
       }
   
       navigate("/thankyou");
     } catch (err) {
-      console.error(err);
       setError(err.message || "Coś poszło nie tak!");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -84,7 +97,15 @@ function Form() {
       <img src={assets.logo_text} alt="logo" className="absolute top-16 left-1/2 -translate-x-1/2 -mb-28 md:h-[13rem] hidden min-[800px]:block drop-shadow-[0_0_20px_#022db0]" />
       <form onSubmit={handleSubmit} className="flex flex-col py-10 md:pt-44 mb-10 space-y-6 p-6 h-a bg-black bg-opacity-30 rounded-2xl shadow-[inset_2px_2px_15px_#1952ff]">
       <h1 className="text-5xl font-bold text-center text-white mb-6 pt-3">REJESTRACJA</h1>
-        <input type="hidden" name="form-name" value="contact" />
+        {/* Niewidoczne pole honeypot chroniące przed spamem botów (BEZ-03, PRA-23) */}
+        <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+          <input
+            type="text"
+            name="hp_field"
+            tabIndex="-1"
+            autoComplete="off"
+          />
+        </div>
 
         {/* Kapitan */}
         <div>
@@ -207,13 +228,13 @@ function Form() {
                     <input
                       type="url"
                       name={`${tmNo}Steam`}
-                      placeholder="Link"
+                      placeholder="https://steamcommunity.com/id/... lub /profiles/..."
                       onInvalid={(e) => e.target.setCustomValidity('To pole jest wymagane i musi zawierać link do profilu Steam.')}
                       onChange={(e) => e.target.setCustomValidity('')}
                       required={!isReserve}
                       className={commonStyle}
                       pattern="^https://steamcommunity\.com(/.*)?$"
-                      title="Link musi być w formacie https://steamcommunity.com/profiles/7656119XXXXXXXXXX/"
+                      title="Link musi być w formacie https://steamcommunity.com/id/twoj_nick lub https://steamcommunity.com/profiles/7656119XXXXXXXXXX/"
                     />
                   </label>
 
@@ -221,7 +242,7 @@ function Form() {
                     Data urodzenia
                     <input
                       type="date"
-                      max={date2010}
+                      max={maxBirthDate}
                       name={`${tmNo}birthDate`}
                       required={!isReserve}
                       className={`${commonStyle} py-1`}
@@ -275,8 +296,8 @@ function Form() {
         </div>
 
         <div className="form-submit my-0">
-          <Button value="submitMessage" type="submit">
-            Zarejestruj
+          <Button value="submitMessage" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Wysyłanie..." : "Zarejestruj"}
           </Button>
         </div>
       </form>
