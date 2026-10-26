@@ -2,6 +2,9 @@
 
 Strona internetowa **GameX ToURnament** — ogólnopolskiego turnieju e-sportowego w Counter-Strike 2, organizowanego przez Samorząd Studentów Uniwersytetu Rzeszowskiego.
 
+<img width="1840" height="877" alt="image" src="https://github.com/user-attachments/assets/ab7b08c9-52fb-4ec4-a995-cb64f5515491" />
+
+
 🌐 **Wersja produkcyjna:** [gamex-tournament.netlify.app](https://gamex-tournament.netlify.app/)
 
 ## Funkcje
